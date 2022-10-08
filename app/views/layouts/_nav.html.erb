@@ -1,0 +1,19 @@
+<nav>
+    <ul class="flex space-x-5 text-lg">
+        <% if current_user %>
+            <li>
+            <%= link_to "Edit profile", edit_user_registration_path%>
+            </li>
+            <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+            </li>
+        <% else %>
+            <li class="nav-item">
+            <%= link_to_unless_current "Sign in", new_user_session_path %>
+            </li>
+            <li class="nav-item">
+            <%= link_to_unless_current "Sign up", new_user_registration_path %>
+            </li>
+        <% end %>
+    </ul>
+</nav>
