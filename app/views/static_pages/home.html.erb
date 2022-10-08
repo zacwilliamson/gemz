@@ -1,1 +1,9 @@
-<h1>static_pages#home</h1>
+<% if user_signed_in? %>
+  <div>
+    <h1><%= current_user %></h1>
+  </div>
+<% else %>
+  <div>
+    <h1>Welcome to FakeBook</h1>
+  </div>
+<% end %>
