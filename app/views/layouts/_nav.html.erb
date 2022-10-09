@@ -2,6 +2,9 @@
     <ul class="flex space-x-5 text-lg">
         <% if current_user %>
             <li>
+            <%= link_to current_user.username, current_user %>
+            </li>
+            <li>
             <%= link_to "Edit profile", edit_user_registration_path%>
             </li>
             <li class="nav-item">

@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def log_in_user
+    return if user_signed_in?
+
+    flash[:alert] = 'Please log in.'
+    redirect_to user_session_path, status: :see_other
+  end
+
   protected
 
   def configure_permitted_parameters
