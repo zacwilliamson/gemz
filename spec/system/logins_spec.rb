@@ -14,10 +14,6 @@ RSpec.describe 'Logins', type: :system do
     expect(page).to have_content('Welcome to Fakebook')
   end
 
-  it 'redirects to login if visiting unauthorized page' do
-    # visit 
-  end
-
   it 'shows homepage (logged in user)' do
     login_as(user1)
     visit root_path
