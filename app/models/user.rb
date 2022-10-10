@@ -22,4 +22,13 @@ class User < ApplicationRecord
 
     friends << other_user
   end
+
+  def un_friend(other_user)
+    friends.delete(other_user)
+    other_user.friends.delete(self)
+  end
+
+  def friends_with?(other_user)
+    active_friends.include?(other_user)
+  end
 end

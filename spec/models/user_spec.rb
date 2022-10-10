@@ -1,31 +1,12 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
+
 RSpec.describe User, type: :model do
-  describe 'validation tests' do
-    it 'username is present' do
-      user = User.new(email: 'sample@example.com', password: 'foobar').save
-      expect(user).to eq(false)
-    end
-
-    it 'email presence' do
-      user = User.new(username: 'mynamehere', password: 'foobar').save
-      expect(user).to eq(false)
-    end
-
-    it 'password presence' do
-      user = User.new(username: 'mynamehere', email: 'sample@example.com').save
-      expect(user).to eq(false)
-    end
-
-    it 'should save successfully' do
-      user = FactoryBot.build(:user, :zac).save
-      expect(user).to eq(true)
-    end
-  end
+  let!(:zac) { create(:user, :zac) }
+  let!(:zoe) { create(:user, :zoe) }
 
   describe '#add_friend' do
-    let!(:zac) { create(:user, :zac) }
-    let!(:zoe) { create(:user, :zoe) }
     context 'when user adds a new friend' do
       before do
         zac.add_friend(zoe)
@@ -68,4 +49,84 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#un_friend' do
+    context 'when a user unfriends an exisitng friend' do
+      before do
+        zac.add_friend(zoe)
+        zoe.add_friend(zac)
+        zac.un_friend(zoe)
+      end
+      it "removes other user from user's friend list" do
+        result = zac.friends.include?(zoe)
+        expect(result).to be_falsey
+      end
+      it "removes user from other user's friend list" do
+        result = zoe.friends.include?(zac)
+        expect(result).to be_falsey
+      end
+      it 'removes friendship from both users' do
+        result = zac.friendships.empty? && zoe.friendships.empty?
+        expect(result).to be_truthy
+      end
+      it 'removes recived friendship from both users' do
+        result = zac.recived_friendships.empty? && zoe.recived_friendships.empty?
+        expect(result).to be_truthy
+      end
+    end
+  end
+
+  describe '#friends_with?' do
+    context 'returns true when...' do
+      before do
+        zac.add_friend(zoe)
+        zoe.add_friend(zac)
+      end
+      it 'other user is an active friend' do
+        result = zac.friends_with?(zoe)
+        expect(result).to be_truthy
+      end
+    end
+    context 'returns false when...' do
+      it 'other user is a pending friend' do
+        zac.add_friend(zoe)
+        result = zac.friends_with?(zoe)
+        expect(result).to be_falsey
+      end
+      it 'no friendship has been initiated' do
+        result = zac.friends_with?(zoe)
+        expect(result).to be_falsey
+      end
+      it 'user unfriends other user' do
+        zac.add_friend(zoe)
+        zoe.add_friend(zac)
+        zac.un_friend(zoe)
+        result = zac.friends_with?(zoe)
+        expect(result).to be_falsey
+      end
+    end
+  end
+
+  describe 'validation tests' do
+    it 'username is present' do
+      user = User.new(email: 'sample@example.com', password: 'foobar').save
+      expect(user).to eq(false)
+    end
+
+    it 'email presence' do
+      user = User.new(username: 'mynamehere', password: 'foobar').save
+      expect(user).to eq(false)
+    end
+
+    it 'password presence' do
+      user = User.new(username: 'mynamehere', email: 'sample@example.com').save
+      expect(user).to eq(false)
+    end
+
+    it 'should save successfully' do
+      user = User.new(username: 'mynamehere', email: 'sample@example.com', password: 'password').save
+      expect(user).to eq(true)
+    end
+  end
 end
+# rubocop:enable Metrics/BlockLength
