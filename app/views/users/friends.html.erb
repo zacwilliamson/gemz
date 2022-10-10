@@ -1,0 +1,9 @@
+<h1><%= @user.username %>'s friends...</h1>
+
+<ul>
+  <% @friends.each do |friend|%>
+    <li>
+      <%= link_to friend.username, friend %>
+    </li>
+  <% end %> 
+</ul>

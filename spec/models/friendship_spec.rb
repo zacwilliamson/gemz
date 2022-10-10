@@ -18,8 +18,4 @@ RSpec.describe Friendship, type: :model do
     friendship.friend_id = nil
     expect(friendship).not_to be_valid
   end
-
-  it 'user_id should not be the same as friend_id' do
-    # test to run
-  end
 end

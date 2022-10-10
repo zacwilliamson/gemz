@@ -1,2 +1,5 @@
 <h1><%= @user.username %></h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<div>
+  <p><%= link_to @user.active_friends.count, friends_user_path %> friends</p>
+</div>
