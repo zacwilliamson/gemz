@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should save successfully' do
-      user = FactoryBot.build(:user).save
+      user = FactoryBot.build(:user, :zac).save
       expect(user).to eq(true)
     end
   end
