@@ -1,8 +1,23 @@
 class User < ApplicationRecord
-  has_many :friend_requests, class_name: 'Friendship', dependent: :destroy
+  has_many :friendships, class_name: 'Friendship', dependent: :destroy
+  has_many :friends, through: :friendships
+  has_many :recived_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :recived_friends, through: :recived_friendships, source: 'user'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true
+
+  def active_friends
+    friends.select { |their| their.friends.include?(self) }
+  end
+
+  def pending_friends
+    friends.reject { |their| their.friends.include?(self) }
+  end
+
+  def add_friend
+    # code to run
+  end
 end

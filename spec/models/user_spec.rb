@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'validation tests' do
+  describe 'validation tests' do
     it 'username is present' do
       user = User.new(email: 'sample@example.com', password: 'foobar').save
       expect(user).to eq(false)
@@ -23,6 +23,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'scope tests' do
+  describe 'friends requests' do
+    it 'should add friend to pending to ' do
+    end
   end
 end
