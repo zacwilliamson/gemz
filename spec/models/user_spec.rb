@@ -50,12 +50,12 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#un_friend' do
+  describe '#unfriend' do
     context 'when a user unfriends an exisitng friend' do
       before do
         zac.add_friend(zoe)
         zoe.add_friend(zac)
-        zac.un_friend(zoe)
+        zac.unfriend(zoe)
       end
       it "removes other user from user's friend list" do
         result = zac.friends.include?(zoe)
@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       it 'user unfriends other user' do
         zac.add_friend(zoe)
         zoe.add_friend(zac)
-        zac.un_friend(zoe)
+        zac.unfriend(zoe)
         result = zac.friends_with?(zoe)
         expect(result).to be_falsey
       end

@@ -1,5 +1,7 @@
 <h1><%= @user.username %></h1>
 
+ <%= render 'friend_form' %>
+
 <div>
   <p><%= link_to @user.active_friends.count, friends_user_path %> friends</p>
 </div>

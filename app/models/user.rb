@@ -23,7 +23,7 @@ class User < ApplicationRecord
     friends << other_user
   end
 
-  def un_friend(other_user)
+  def unfriend(other_user)
     friends.delete(other_user)
     other_user.friends.delete(self)
   end
