@@ -17,7 +17,9 @@ class User < ApplicationRecord
     friends.reject { |their| their.friends.include?(self) }
   end
 
-  def add_friend
-    # code to run
+  def add_friend(other_user)
+    return if other_user == self || friends.include?(other_user)
+
+    friends << other_user
   end
 end
