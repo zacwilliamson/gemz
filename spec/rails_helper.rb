@@ -61,10 +61,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  RSpec.configure do |conf|
-    conf.include FactoryBot::Syntax::Methods
-    conf.include Warden::Test::Helpers
-  end
+  config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers
 end
 
 Capybara.default_driver = :selenium_chromes
