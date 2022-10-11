@@ -10,7 +10,7 @@ RSpec.describe 'Friendships', type: :system do
     driven_by(:rack_test)
   end
 
-  scenario "add friend button sends request and displays 'request sent'" do
+  scenario "'zac sends friend request, page displays 'request sent'" do
     login_as(zac)
     visit "/users/#{zoe.id}"
     click_on 'Add friend'
@@ -22,17 +22,9 @@ RSpec.describe 'Friendships', type: :system do
     expect(result).to be_truthy
   end
 
-  # scenario "add friend button sends request and displays 'request sent'" do
-  #   login_as(zac)
-  #   zoe.add_friend(zac)
-  #   visit "/users/#{zoe.id}"
-  #   click_on 'Accept'
-  #   zac.reload
-  #   result = zac.pending_friends.include?(zoe) && zoe.recived_friends.include?(zac)
-
-  #   expect(page).to have_xpath("//input[@value='Unfriend']")
-  #   expect(result).to be_truthy
-  # end
+  scenario "zoe sends friend request to zac" do
+    # test to run
+  end
 end
 
 # Notes
