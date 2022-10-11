@@ -1,1 +1,4 @@
-unfriend
+<%= form_with(model: current_user.friendships.find_by(friend: @user),
+              html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfriend" %>
+<% end %>
