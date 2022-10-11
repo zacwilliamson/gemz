@@ -1,9 +1,12 @@
 <% unless current_user == @user %>
   <div>
-  <% if current_user.friends_with?(@user) || current_user.pending_friends.include?(@user) %>
+  <% if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user) %>
+    <%= render 'unfriend' %>
+    <%= render 'add_friend' %>
+  <% elsif current_user.friends_with?(@user) || current_user.pending_friends.include?(@user) %>
     <%= render 'unfriend' %>
   <% else %>
-    <%= render 'add_friend' %>
+     <%= render 'add_friend' %>
   <% end %>
   </div>
 <% end %>

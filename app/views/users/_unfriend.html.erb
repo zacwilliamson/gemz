@@ -1,4 +1,6 @@
-<% if current_user.pending_friends.include?(@user)%>
+<% if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)%>
+  <% @title = "Decline" %>
+<% elsif current_user.pending_friends.include?(@user) %>
   <% @title = "Request sent" %>
 <% else %>
   <% @title = "Unfriend" %>
