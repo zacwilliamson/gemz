@@ -1,4 +1,10 @@
+<% if current_user.pending_friends.include?(@user)%>
+  <% @title = "Request sent" %>
+<% else %>
+  <% @title = "Unfriend" %>
+<% end %>
+
 <%= form_with(model: current_user.friendships.find_by(friend: @user),
               html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfriend" %>
+  <%= f.submit @title %>
 <% end %>
