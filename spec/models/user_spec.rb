@@ -106,17 +106,35 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # describe '#recived_request?' do
-    #   context 'it returns true when...' do
-    #     before do
-    #       zac.add_friend(zoe)
-    #     end
-    #     it 'a user recives a friend request' do
-    #       result = zoe.recived_request?(zac)
-    #       expect(result).to be_truthy
-    #     end
-    #   end
-    # end
+    describe '#recived_request?' do
+      context 'it returns true when...' do
+        before do
+          zac.add_friend(zoe)
+        end
+        it 'a user recives a friend request' do
+          result = zoe.recived_request?(zac)
+          expect(result).to be_truthy
+        end
+      end
+      context 'it returns false when' do
+        it 'there is no existing friendship' do
+          result = zoe.recived_request?(zac)
+          expect(result).to be_falsey
+        end
+        it 'the users are already friends with each other' do
+          zac.add_friend(zoe)
+          zoe.add_friend(zac)
+          result = zoe.recived_request?(zac)
+          expect(result).to be_falsey
+        end
+        it 'the user sends a request then cancels it' do
+          zac.add_friend(zoe)
+          zac.unfriend(zoe)
+          result = zoe.recived_request?(zac)
+          expect(result).to be_falsey
+        end
+      end
+    end
 
     describe 'validation tests' do
       it 'username is present' do

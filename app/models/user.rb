@@ -31,4 +31,8 @@ class User < ApplicationRecord
   def friends_with?(other_user)
     active_friends.include?(other_user)
   end
+
+  def recived_request?(other_user)
+    recived_friends.include?(other_user) && !friends_with?(other_user)
+  end
 end
