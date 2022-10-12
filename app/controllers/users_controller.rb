@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def add_friend_btn
-    if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)
+    if current_user.recived_request?(@user)
       'Accept'
     else
       'Add friend'
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def unfriend_btn
-    if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)
+    if current_user.recived_request?(@user)
       'Decline'
     elsif current_user.pending_friends.include?(@user)
       'Request sent'

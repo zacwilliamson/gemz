@@ -1,4 +1,4 @@
-<% if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)%>
+<% if current_user.recived_request?(@user)%>
   <%= form_with(model: @user.friendships.find_by(friend: current_user),
               html: { method: :delete }) do |f| %>
   <%= f.submit @unfriend %>
