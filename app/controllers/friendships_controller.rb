@@ -7,9 +7,9 @@ class FriendshipsController < ApplicationController
 
   def destroy
     friendship = Friendship.find(params[:id])
-    friend = select_friend(friendship)
-    current_user.unfriend(friend)
-    redirect_to friend, status: :see_other
+    @friend = select_friend(friendship)
+    current_user.unfriend(@friend)
+    redirect_to @friend, status: :see_other
   end
 
   private

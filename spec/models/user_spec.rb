@@ -105,27 +105,39 @@ RSpec.describe User, type: :model do
         expect(result).to be_falsey
       end
     end
-  end
 
-  describe 'validation tests' do
-    it 'username is present' do
-      user = User.new(email: 'sample@example.com', password: 'foobar').save
-      expect(user).to eq(false)
-    end
+    # describe '#recived_request?' do
+    #   context 'it returns true when...' do
+    #     before do
+    #       zac.add_friend(zoe)
+    #     end
+    #     it 'a user recives a friend request' do
+    #       result = zoe.recived_request?(zac)
+    #       expect(result).to be_truthy
+    #     end
+    #   end
+    # end
 
-    it 'email presence' do
-      user = User.new(username: 'mynamehere', password: 'foobar').save
-      expect(user).to eq(false)
-    end
+    describe 'validation tests' do
+      it 'username is present' do
+        user = User.new(email: 'sample@example.com', password: 'foobar').save
+        expect(user).to eq(false)
+      end
 
-    it 'password presence' do
-      user = User.new(username: 'mynamehere', email: 'sample@example.com').save
-      expect(user).to eq(false)
-    end
+      it 'email presence' do
+        user = User.new(username: 'mynamehere', password: 'foobar').save
+        expect(user).to eq(false)
+      end
 
-    it 'should save successfully' do
-      user = User.new(username: 'mynamehere', email: 'sample@example.com', password: 'password').save
-      expect(user).to eq(true)
+      it 'password presence' do
+        user = User.new(username: 'mynamehere', email: 'sample@example.com').save
+        expect(user).to eq(false)
+      end
+
+      it 'should save successfully' do
+        user = User.new(username: 'mynamehere', email: 'sample@example.com', password: 'password').save
+        expect(user).to eq(true)
+      end
     end
   end
 end

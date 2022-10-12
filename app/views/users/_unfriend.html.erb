@@ -1,19 +1,11 @@
 <% if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)%>
-  <% @title = "Decline" %>
   <%= form_with(model: @user.friendships.find_by(friend: current_user),
               html: { method: :delete }) do |f| %>
-  <%= f.submit @title %>
-  <% end %>
-<% elsif current_user.pending_friends.include?(@user) %>
-  <% @title = "Request sent" %>
-  <%= form_with(model: current_user.friendships.find_by(friend: @user),
-              html: { method: :delete }) do |f| %>
-  <%= f.submit @title %>
+  <%= f.submit @unfriend %>
   <% end %>
 <% else %>
-  <% @title = "Unfriend" %>
   <%= form_with(model: current_user.friendships.find_by(friend: @user),
               html: { method: :delete }) do |f| %>
-  <%= f.submit @title %>
+  <%= f.submit @unfriend %>
   <% end %>
 <% end %>
