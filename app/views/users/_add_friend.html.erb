@@ -1,10 +1,4 @@
-<% if current_user.recived_friends.include?(@user) && !current_user.friends_with?(@user)%>
-  <% @title = "Accept" %>
-<% else %>
-  <% @title = "Add friend" %>
-<% end %>
-
 <%= form_with(model: current_user.friendships.build) do |f| %>
   <%= hidden_field_tag :friend_id, @user.id %>
-  <%= f.submit @title %>
+  <%= f.submit @add_friend %>
 <% end %>
