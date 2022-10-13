@@ -2,6 +2,8 @@ class FriendshipsController < ApplicationController
   def create
     user = User.find(params[:friend_id])
     current_user.add_friend(user)
+    request = user.recived_friendships.find_by(user: current_user)
+    notify(user, request)
     redirect_to user
   end
 
@@ -20,5 +22,9 @@ class FriendshipsController < ApplicationController
     else
       friendship.friend
     end
+  end
+
+  def notify(user, request)
+    user.notifications.create(notifiable: request)
   end
 end
