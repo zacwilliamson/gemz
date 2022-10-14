@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show friends]
+  before_action :set_user, only: %i[show friends notifications]
   before_action :log_in_user, only: %i[show friends]
   def show
     @add_friend = add_friend_btn
@@ -8,6 +8,11 @@ class UsersController < ApplicationController
 
   def friends
     @friends = @user.active_friends
+  end
+
+  # only for loggend in user
+  def notifications
+    @notifications = @user.notifications.all
   end
 
   private

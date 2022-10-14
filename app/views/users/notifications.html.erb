@@ -1,0 +1,9 @@
+<h1><%= @user.username %>'s Notifications</h1>
+
+<ul>
+  <% @notifications.each do |n|%>
+    <li>
+      <%= n.notifiable_type %>
+    </li>
+  <% end %>
+</ul>

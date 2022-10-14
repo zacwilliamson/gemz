@@ -5,6 +5,9 @@
             <%= link_to current_user.username, current_user %>
             </li>
             <li>
+            <%= link_to current_user.notifications.count, notifications_user_path(current_user) %> Notifications 
+            </li>
+            <li>
             <%= link_to "Edit profile", edit_user_registration_path%>
             </li>
             <li class="nav-item">
