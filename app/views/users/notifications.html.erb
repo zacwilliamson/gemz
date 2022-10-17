@@ -3,7 +3,7 @@
 <ul>
   <% @notifications.each do |n|%>
     <li>
-      <%= link_to n.request_sender.username, n.request_sender %>
+      <%= link_to n.sender.username, n.sender %>
       <%= n.message %>
     </li>
   <% end %>

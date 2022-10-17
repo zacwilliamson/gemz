@@ -11,10 +11,24 @@ class Notification < ApplicationRecord
     end
   end
 
-  def request_sender
+  def friend_request?
     return unless notifiable_type == 'Friendship'
 
-    request = Friendship.find(notifiable_id)
-    request.user
+    friendship = Friendship.find(notifiable_id)
+    user.recived_request?(friendship.user)
+  end
+
+  def friend_accept?
+    return unless notifiable_type == 'Friendship'
+
+    friendship = Friendship.find(notifiable_id)
+    user.friends_with?(friendship.user)
+  end
+
+  def sender
+    return unless notifiable_type == 'Friendship'
+
+    friendship = Friendship.find(notifiable_id)
+    friendship.user
   end
 end
