@@ -1,10 +1,23 @@
 <h1><%= @user.username %>'s Notifications</h1>
 
+<% unless @new.empty? %>
+  <h3>New</h3>
+  <ul>
+    <% @new.each do |n|%>
+      <li>
+        <%= link_to n.sender.username, n.sender %>
+        <%= n.message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>Old</h3>
 <ul>
-  <% @notifications.each do |n|%>
+  <% @old.each do |o|%>
     <li>
-      <%= link_to n.sender.username, n.sender %>
-      <%= n.message %>
+      <%= link_to o.sender.username, o.sender %>
+      <%= o.message %>
     </li>
   <% end %>
 </ul>
