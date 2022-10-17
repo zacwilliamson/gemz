@@ -25,6 +25,8 @@ class FriendshipsController < ApplicationController
   end
 
   def notify(user, friendship)
+    return if current_user == user
+
     user.notifications.create(notifiable: friendship)
   end
 end

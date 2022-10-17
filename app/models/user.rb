@@ -25,8 +25,8 @@ class User < ApplicationRecord
   end
 
   def unfriend(other_user)
-    friends.delete(other_user)
-    other_user.friends.delete(self)
+    friends.destroy(other_user)
+    other_user.friends.destroy(self)
   end
 
   def friends_with?(other_user)

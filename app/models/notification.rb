@@ -7,7 +7,7 @@ class Notification < ApplicationRecord
     if friend_request?
       'sent you a friend request'
     elsif friend_accept?
-      'accepted your friend request'
+      'is your new friend'
     else
       'im just here to party'
     end

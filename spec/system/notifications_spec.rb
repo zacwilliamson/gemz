@@ -8,11 +8,11 @@ RSpec.describe 'Notifications', type: :system do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
 
-  # before do
-  #   driven_by(:rack_test)
-  # end
+  before do
+    driven_by(:rack_test)
+  end
 
-  scenario "zoe sends friends request to zac and notification shows up on zac's home page" do
+  scenario "zoe friend requests zac, notification displays on zac's home page. he accepts and zoe is notified" do
     login_as(zoe)
     visit "/users/#{zac.id}"
     click_on 'Add friend'
@@ -38,11 +38,27 @@ RSpec.describe 'Notifications', type: :system do
     login_as(zoe)
     visit '/'
     click_on '1'
-    sleep(3)
     zoe.reload
     result_two = zoe.friends_with?(zac)
     expect(result_two).to be_truthy
-    expect(page).to have_content("#{zac.username} accepted your friend request")
+    expect(page).to have_content("#{zac.username} is your new friend")
+  end
+
+  scenario 'zoe friend requests zac, he declines, now has empty notifications' do
+    login_as(zoe)
+    visit "/users/#{zac.id}"
+    click_on 'Add friend'
+    logout(zoe)
+    login_as(zac)
+
+    visit '/'
+    click_on '1'
+    click_on zoe.username.to_s
+    click_on 'Decline'
+    zac.reload
+    expect(page).to have_content(zac.username)
+    expect(zac.notifications).to be_empty
+    expect(page).to have_content('0 Notifications')
   end
 end
 # rubocop:enable Metrics/BlockLength
