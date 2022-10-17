@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # only for loggend in user
   def notifications
-    @notifications = @user.notifications.all
+    @notifications = @user.notifications.all.order('notifications.created_at desc')
   end
 
   private
