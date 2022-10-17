@@ -15,10 +15,12 @@ RSpec.describe 'Notifications', type: :system do
     login_as(zac)
     visit '/'
     zac.reload
-    result = zac.recived_request?(zoe) && zac.notifications.first.notifiable_type == 'Friendship'
-    logout(:user)
+    result_one = zac.recived_request?(zoe) && zac.notifications.first.notifiable_type == 'Friendship'
 
     expect(page).to have_content('1 Notifications')
-    expect(result).to be_truthy
+    expect(result_one).to be_truthy
+
+    click_on '1'
+    expect(page).to have_content("#{zoe.username} sent you a friend request")
   end
 end
