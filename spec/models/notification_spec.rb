@@ -1,9 +1,11 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
+
 RSpec.describe Notification, type: :model do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
-  
+
   def zac_sends_zoe_request
     zac.add_friend(zoe)
     request = zoe.recived_friendships.find_by(user: zac)
@@ -32,3 +34,4 @@ RSpec.describe Notification, type: :model do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
