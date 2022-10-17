@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   def message
-    "sent you a friend request" if notifiable_type == 'Friendship'
+    'sent you a friend request' if notifiable_type == 'Friendship'
   end
 
   def request_sender
