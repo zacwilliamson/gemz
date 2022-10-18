@@ -18,6 +18,14 @@ class User < ApplicationRecord
     friends.reject { |their| their.friends.include?(self) }
   end
 
+  def new_notifications
+    notifications.select { |n| n.was_read == false }
+  end
+
+  def old_notifications
+    notifications.reject { |n| n.was_read == false }
+  end
+
   def add_friend(other_user)
     return if other_user == self || friends.include?(other_user)
 

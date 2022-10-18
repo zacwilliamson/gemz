@@ -52,7 +52,15 @@ RSpec.describe 'Notifications', type: :system do
     login_as(zac)
 
     visit '/'
+    request = zac.notifications.last
+    zac.reload
+    result_one = zac.new_notifications.include?(request)
     click_on '1'
+    zac.reload
+    result_two = zac.old_notifications.include?(request)
+    expect(result_one).to be_truthy
+    expect(result_two).to be_truthy
+
     click_on zoe.username.to_s
     click_on 'Decline'
     zac.reload

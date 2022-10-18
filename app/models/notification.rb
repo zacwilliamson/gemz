@@ -9,7 +9,7 @@ class Notification < ApplicationRecord
     elsif friend_accept?
       'is your new friend'
     else
-      'im just here to party'
+      'default'
     end
   end
 
