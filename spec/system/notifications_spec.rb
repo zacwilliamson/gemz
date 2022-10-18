@@ -27,9 +27,6 @@ RSpec.describe 'Notifications', type: :system do
 
     click_on '1'
     expect(page).to have_content("#{zoe.username} sent you a friend request")
-
-    click_on zoe.username.to_s
-    expect(page).to have_content(zoe.username)
     expect(page).to have_xpath("//input[@value='Accept']")
     expect(page).to have_xpath("//input[@value='Decline']")
 
@@ -60,11 +57,12 @@ RSpec.describe 'Notifications', type: :system do
     result_two = zac.old_notifications.include?(request)
     expect(result_one).to be_truthy
     expect(result_two).to be_truthy
+    expect(page).to have_xpath("//input[@value='Accept']")
+    expect(page).to have_xpath("//input[@value='Decline']")
 
-    click_on zoe.username.to_s
     click_on 'Decline'
     zac.reload
-    expect(page).to have_content(zac.username)
+    expect(page).to have_content("#{zac.username}'s Notifications")
     expect(zac.notifications).to be_empty
     expect(page).to have_content('0 Notifications')
   end
