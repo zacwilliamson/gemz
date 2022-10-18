@@ -34,7 +34,7 @@ RSpec.describe 'Notifications', type: :system do
     logout(zac)
     login_as(zoe)
     visit '/'
-    click_on '1'
+    click_on '0'
     zoe.reload
     result_two = zoe.friends_with?(zac)
     expect(result_two).to be_truthy
@@ -65,6 +65,9 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_content("#{zac.username}'s Notifications")
     expect(zac.notifications).to be_empty
     expect(page).to have_content('0 Notifications')
+
+    visit "/users/#{zoe.id}/notifications"
+    expect(page).to have_content("#{zac.username}'s Notifications")
   end
 end
 # rubocop:enable Metrics/BlockLength

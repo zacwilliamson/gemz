@@ -12,11 +12,15 @@ class UsersController < ApplicationController
 
   # only for loggend in user
   def notifications
-    @new = @user.new_notifications.reverse
-    @old = @user.old_notifications.reverse
-    @new.each do |n|
-      n.was_read = true
-      n.save
+    if current_user == @user
+      @new = @user.new_notifications.reverse
+      @old = @user.old_notifications.reverse
+      @new.each do |n|
+        n.was_read = true
+        n.save
+      end
+    else
+      redirect_to notifications_user_path(current_user)
     end
   end
 
