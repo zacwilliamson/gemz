@@ -12,9 +12,8 @@ class UsersController < ApplicationController
 
   # only for loggend in user
   def notifications
-    notifications = @user.notifications.all.order('notifications.created_at desc')
-    @new = notifications.select { |n| n.was_read == false }
-    @old = notifications.reject { |n| n.was_read == false }
+    @new = @user.new_notifications.reverse
+    @old = @user.old_notifications.reverse
     @new.each do |n|
       n.was_read = true
       n.save
