@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :recived_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :recived_friends, through: :recived_friendships, source: 'user'
   has_many :notifications, dependent: :destroy
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
