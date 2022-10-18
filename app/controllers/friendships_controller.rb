@@ -4,14 +4,14 @@ class FriendshipsController < ApplicationController
     current_user.add_friend(user)
     friendship = user.recived_friendships.find_by(user: current_user)
     notify(user, friendship)
-    redirect_to user
+    redirect_to request.referrer
   end
 
   def destroy
     friendship = Friendship.find(params[:id])
     friend = select_friend(friendship)
     current_user.unfriend(friend)
-    redirect_to friend, status: :see_other
+    redirect_to request.referrer, status: :see_other
   end
 
   private
