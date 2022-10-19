@@ -1,6 +1,14 @@
 <% if user_signed_in? %>
   <div>
     <h1>Welcome <%= current_user.username %></h1>
+    
+    <%= render 'posts/post_form' %>
+    <% @posts.each do |p| %>
+      <%= p.user.username %> | 
+      <%= p.content %> |
+      Posted <%= time_ago_in_words(p.created_at) %> ago
+      <br>
+    <% end %>
   </div>
 <% else %>
   <div>
