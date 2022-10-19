@@ -10,7 +10,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
+    post = Post.find(params[:id])
+    post.delete
     flash[:success] = 'Micropost deleted'
     if request.referrer.nil?
       redirect_to root_url, status: :see_other

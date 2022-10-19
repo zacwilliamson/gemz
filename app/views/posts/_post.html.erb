@@ -1,10 +1,9 @@
 <li>
   <%= link_to post.user.username, post.user %>
-  <%= post.body %>
+  <%= post.content %>
 
   Posted <%= time_ago_in_words(post.created_at) %> ago
-  <% if current_user?(post.user) %>
-      <%= link_to "delete", post, data: { "turbo-method": :delete,
-                                              turbo_confirm: "You sure?" } %>
+  <% if current_user == post.user %>
+      <%= button_to "Delete", post, method: :delete %>
   <% end %>
 </li>
