@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[destroy edit update show]
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -10,8 +12,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.delete
+    @post.destroy
     flash[:success] = 'Micropost deleted'
     if request.referrer.nil?
       redirect_to root_url, status: :see_other
@@ -21,16 +22,26 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_url(@post)
+    else
+      redirect_to request.referrer, status: :see_other
+    end
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   private
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

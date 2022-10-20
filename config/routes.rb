@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :friendships, only: %i[create destroy]
-  resources :posts, only: %i[create destroy show edit]
+  resources :posts, only: %i[create destroy show edit update]
   resources :users, only: %i[show notifications] do
     member do
       get :friends
