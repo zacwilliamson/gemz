@@ -3,6 +3,7 @@ require 'rails_helper'
 # rails g rspec:system Posts
 # rspec spec/system/posts_spec.rb
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'Posts', type: :system do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
@@ -43,3 +44,4 @@ RSpec.describe 'Posts', type: :system do
     expect(page).to_not have_content('Yee yee')
   end
 end
+# rubocop:enable Metrics/BlockLength
