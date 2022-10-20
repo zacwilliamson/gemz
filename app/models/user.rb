@@ -45,4 +45,8 @@ class User < ApplicationRecord
   def recived_request?(other_user)
     recived_friends.include?(other_user) && !friends_with?(other_user)
   end
+
+  def feed
+    Post.select { |p| active_friends.include?(p.user) || self == p.user }
+  end
 end

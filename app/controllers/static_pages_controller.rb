@@ -3,6 +3,6 @@ class StaticPagesController < ApplicationController
     return if current_user.nil?
 
     @post = current_user.posts.build
-    @posts = Post.all
+    @posts = current_user.feed
   end
 end
