@@ -3,7 +3,9 @@
     <h1>Welcome <%= current_user.username %></h1>
     
     <%= render 'posts/post_form' %>
-    <%= render @posts %>
+    <ul>
+      <%= render @posts unless @posts.empty? %>
+    </ul>
   </div>
 <% else %>
   <div>

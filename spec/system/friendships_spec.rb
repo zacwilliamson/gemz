@@ -54,6 +54,3 @@ RSpec.describe 'Friendships', type: :system do
 end
 
 # Notes
-
-# How can I check that a form field is prefilled correctly using capybara?
-# https://stackoverflow.com/questions/10503802/how-can-i-check-that-a-form-field-is-prefilled-correctly-using-capybara
