@@ -22,11 +22,19 @@ RSpec.describe 'Posts', type: :system do
     expect(page).to have_content('Test post')
     expect(result_one).to be_truthy
 
+    click_on 'Edit'
+    fill_in 'Write your new post here...', with: 'Tester poster'
+    click_on 'Post'
+    zac.reload
+    result_two = zac.posts.last.content == 'Tester poster'
+    expect(page).to have_content('Tester poster')
+    expect(result_two).to be_truthy
+
     click_on 'Delete'
     zac.reload
-    result_two = zac.posts.empty?
-    expect(page).to_not have_content('Test post')
-    expect(result_two).to be_truthy
+    result_three = zac.posts.empty?
+    expect(page).to_not have_content('Tester poster')
+    expect(result_three).to be_truthy
   end
 
   scenario 'users feed displays their own posts and friends post' do
