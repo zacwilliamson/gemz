@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[destroy edit update show]
+  before_action :log_in_user
 
   def create
     @post = current_user.posts.build(post_params)
@@ -17,8 +18,6 @@ class PostsController < ApplicationController
     redirect_to root_url, status: :see_other
   end
 
-  def edit; end
-
   def update
     if @post.update(post_params)
       redirect_to post_url(@post)
@@ -26,6 +25,8 @@ class PostsController < ApplicationController
       redirect_to request.referrer, status: :see_other
     end
   end
+
+  def edit; end
 
   def show; end
 

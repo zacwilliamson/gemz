@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show friends notifications]
-  before_action :log_in_user, only: %i[show friends]
+  before_action :log_in_user
+
   def show
     @add_friend = add_friend_btn
     @unfriend = unfriend_btn
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
     @friends = @user.active_friends
   end
 
-  # only for loggend in user
   def notifications
     if current_user == @user
       @new = @user.new_notifications.reverse

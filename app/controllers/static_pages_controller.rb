@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
-    return if current_user.nil?
+    return unless user_signed_in?
 
     @post = current_user.posts.build
-    @posts = current_user.feed
+    @feed = current_user.feed
   end
 end
