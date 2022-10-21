@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = 'Your post is live'
+      flash[:notice] = 'Your post is live'
       redirect_to root_url
     else
       render 'static_pages/home', status: :unprocessable_entity
@@ -14,12 +14,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = 'Micropost deleted'
+    flash[:notice] = 'Your post was deleted'
     redirect_to root_url, status: :see_other
   end
 
   def update
     if @post.update(post_params)
+      flash[:notice] = 'Your post was updated'
       redirect_to post_url(@post)
     else
       redirect_to request.referrer, status: :see_other
