@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[destroy edit update show]
+  before_action :set_post, only: %i[destroy edit update show correct_user]
+  before_action :correct_user, only: %i[destroy edit update]
   before_action :log_in_user
 
   def create
@@ -39,5 +40,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    redirect_to root_url, status: :see_other unless @post.user == current_user
   end
 end
