@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 
   def notifications
     if current_user == @user
-      @new = @user.new_notifications.reverse
-      @old = @user.old_notifications.reverse
+      @new = @user.new_notifications
+      @old = @user.old_notifications
       @new.each do |n|
         n.was_read = true
         n.save
