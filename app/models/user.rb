@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :recived_friends, through: :recived_friendships, source: 'user'
   has_many :notifications, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :reactions, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
