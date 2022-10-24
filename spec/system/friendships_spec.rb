@@ -6,6 +6,7 @@ require 'rails_helper'
 RSpec.describe 'Friendships', type: :system do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
+  
   before do
     driven_by(:rack_test)
   end
