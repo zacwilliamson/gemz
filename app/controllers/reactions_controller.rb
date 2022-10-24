@@ -8,7 +8,8 @@ class ReactionsController < ApplicationController
   end
 
   def destroy
-    @reaction = current_user.reactions.find(params[id])
+    reaction = current_user.reactions.find(params[:id])
+    reaction.destroy
     redirect_to request.referrer, status: :see_other
   end
 end

@@ -1,4 +1,11 @@
-<%= form_with(model: current_user.reactions.build) do |f| %>
+<% if current_user.reacted?(@reactionable) %>
+  <%= form_with(model: current_user.reactions.find_by(reactionable: @reactionable),
+              html: { method: :delete }) do |f| %>
+  <%= f.submit 'Unlike' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.reactions.build) do |f| %>
   <%= hidden_field_tag :reactionable_id, @reactionable.id %>
   <%= f.submit 'Like' %>
+  <% end %>
 <% end %>
