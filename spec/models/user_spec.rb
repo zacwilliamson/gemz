@@ -76,6 +76,20 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#reacted?' do
+    context 'it returns true when...' do
+      before do
+        zoe.posts.create(content: 'sample post!')
+      end
+      it 'a user is included in the list of reactions' do
+        post = zoe.posts.last
+        Reaction.create(user: zac, reactionable: post)
+        result = zac.reacted?(post)
+        expect(result).to be_truthy
+      end
+    end
+  end
+
   describe '#friends_with?' do
     context 'returns true when...' do
       before do

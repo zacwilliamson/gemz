@@ -47,6 +47,11 @@ class User < ApplicationRecord
     recived_friends.include?(other_user) && !friends_with?(other_user)
   end
 
+  def reacted?(reactionable)
+    all_reactions = reactionable.reactions.map(&:user)
+    all_reactions.include?(self)
+  end
+
   def feed
     feed = Post.select { |p| active_friends.include?(p.user) || self == p.user }
     feed.reverse
