@@ -1,0 +1,4 @@
+<%= form_with(model: current_user.reactions.find_by(reactionable: @reactionable),
+              html: { method: :delete }) do |f| %>
+  <%= f.submit 'Unlike' %>
+  <% end %>
