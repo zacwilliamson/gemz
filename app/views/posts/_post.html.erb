@@ -7,5 +7,12 @@
       <%= button_to "Delete", post, method: :delete %>
       <%= link_to "Edit", edit_post_path(post) %>
   <% end %>
+
+  <br>
+
+  <%= post.reactions.count %>
+  <%= render 'reactions/reaction_form',  :@reactionable => post %>
+
   <hr>
+  
 </div>
