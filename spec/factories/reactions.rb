@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :reaction do
     user { nil }
-    reactionable_id { 1 }
-    reactionable_type { "MyString" }
-    type { "" }
+    reactable_id { 1 }
+    reactable_type { 'MyString' }
+    type { '' }
   end
 end

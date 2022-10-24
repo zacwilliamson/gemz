@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
       end
       it 'a user is included in the list of reactions' do
         post = zoe.posts.last
-        Reaction.create(user: zac, reactionable: post)
+        Reaction.create(user: zac, reactable: post)
         result = zac.reacted?(post)
         expect(result).to be_truthy
       end

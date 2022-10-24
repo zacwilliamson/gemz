@@ -47,8 +47,8 @@ class User < ApplicationRecord
     recived_friends.include?(other_user) && !friends_with?(other_user)
   end
 
-  def reacted?(reactionable)
-    all_reactions = reactionable.reactions.map(&:user)
+  def reacted?(reactable)
+    all_reactions = reactable.reactions.map(&:user)
     all_reactions.include?(self)
   end
 

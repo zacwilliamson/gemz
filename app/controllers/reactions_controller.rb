@@ -2,8 +2,8 @@ class ReactionsController < ApplicationController
   before_action :log_in_user
 
   def create
-    reactionable = Post.find(params[:reactionable_id])
-    Reaction.create(user: current_user, reactionable: reactionable)
+    reactable = Post.find(params[:reactable_id])
+    Reaction.create(user: current_user, reactable: reactable)
     redirect_to request.referrer
   end
 

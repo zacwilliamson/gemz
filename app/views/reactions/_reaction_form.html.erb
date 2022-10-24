@@ -1,4 +1,4 @@
-<% if current_user.reacted?(@reactionable) %>
+<% if current_user.reacted?(@reactable) %>
   <%= render 'reactions/unreact' %>
 <% else %>
   <%= render 'reactions/add_reaction' %>
