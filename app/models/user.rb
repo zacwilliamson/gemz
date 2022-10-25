@@ -53,6 +53,8 @@ class User < ApplicationRecord
   end
 
   def feed
-    Post.order('created_at DESC').select { |p| active_friends.include?(p.user) || self == p.user }
+    Post.order('created_at DESC').select do |p|
+      active_friends.include?(p.user) || self == p.user
+    end
   end
 end

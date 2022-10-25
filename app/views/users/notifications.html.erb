@@ -6,29 +6,11 @@
 <% unless @new.empty? %>
   <h3>New</h3>
   <ul>
-    <% @new.each do |n|%>
-      <li>
-        <%= link_to n.sender.username, n.sender %>
-        <%= n.message %>
-        <% if n.friend_request? %>
-          <% @user = n.sender %>
-          <%= render 'friend_form' %>
-      <% end %>
-      </li>
-    <% end %>
+    <%= render @new %>
   </ul>
 <% end %>
 
 <h3>Old</h3>
 <ul>
-  <% @old.each do |o|%>
-    <li>
-      <%= link_to o.sender.username, o.sender %>
-      <%= o.message %>
-      <% if o.friend_request? %>
-          <% @user = o.sender %>
-          <%= render 'friend_form' %>
-      <% end %>
-    </li>
-  <% end %>
+  <%= render @old %>
 </ul>

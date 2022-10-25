@@ -1,0 +1,8 @@
+<li>
+  <%= link_to notification.sender.username, notification.sender %>
+  <%= notification.message %>
+  <% if notification.friend_request? %>
+    <% @user = notification.sender %>
+    <%= render 'friend_form' %>
+  <% end %>
+</li>
