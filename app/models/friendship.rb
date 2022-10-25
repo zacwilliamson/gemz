@@ -5,4 +5,12 @@ class Friendship < ApplicationRecord
 
   validates :user_id, presence: true
   validates :friend_id, presence: true
+
+  def message
+    if friend.recived_request?(user)
+      'sent you a friend request'
+    else
+      'is your new friend'
+    end
+  end
 end

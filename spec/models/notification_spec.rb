@@ -43,19 +43,6 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe '#friend_accept?' do
-    before do
-      zoe_accepts_zacs_request
-    end
-    context 'it returns true when...' do
-      it 'the notification is a friend who accepts the other users request' do
-        notification = zac.notifications.last
-        result = notification.friend_accept?
-        expect(result).to be_truthy
-      end
-    end
-  end
-
   describe '#sender' do
     before do
       zac_sends_zoe_request
