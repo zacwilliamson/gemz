@@ -94,5 +94,18 @@ RSpec.describe 'Notifications', type: :system do
     visit "/users/#{zoe.id}/notifications"
     expect(page).to have_content("#{zac.username} liked your post")
   end
+
+  scenario 'a user is not notified when they like thier own posts' do
+    # set up
+    zac.posts.create(content: 'Simple test post')
+    post = zac.posts.last
+
+    login_as(zac)
+    visit '/'
+    click_on 'Like'
+    result_one = zac.reacted?(post) && zac.notifications.empty?
+    expect(result_one).to be_truthy
+    expect(page).to have_content('0 Notifications')
+  end
 end
 # rubocop:enable Metrics/BlockLength
