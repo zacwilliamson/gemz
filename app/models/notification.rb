@@ -12,7 +12,7 @@ class Notification < ApplicationRecord
     elsif friend_accept?
       'is your new friend'
     elsif reaction?
-      'liked your post' 
+      'liked your post'
     else
       'default'
     end

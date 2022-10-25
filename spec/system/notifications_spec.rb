@@ -12,6 +12,8 @@ RSpec.describe 'Notifications', type: :system do
     driven_by(:rack_test)
   end
 
+  # break these tests up!
+
   scenario "zoe friend requests zac, notification displays on zac's home page. he accepts and zoe is notified" do
     login_as(zoe)
     visit "/users/#{zac.id}"
@@ -68,6 +70,29 @@ RSpec.describe 'Notifications', type: :system do
 
     visit "/users/#{zoe.id}/notifications"
     expect(page).to have_content("#{zac.username}'s Notifications")
+  end
+
+  scenario 'when user is notified when their post is liked' do
+    # set up
+    zoe.add_friend(zac)
+    zac.add_friend(zoe)
+    zoe.posts.create(content: 'Simple test post')
+    post = zoe.posts.last
+
+    login_as(zac)
+    visit '/'
+    click_on 'Like'
+    reaction = zac.reactions.find_by(reactable: post)
+    result_one = zoe.notifications.last.notifiable_id == reaction.id
+    expect(result_one).to be_truthy
+
+    logout(zac)
+    login_as(zoe)
+    visit '/'
+    expect(page).to have_content('1 Notifications')
+
+    visit "/users/#{zoe.id}/notifications"
+    expect(page).to have_content("#{zac.username} liked your post")
   end
 end
 # rubocop:enable Metrics/BlockLength
