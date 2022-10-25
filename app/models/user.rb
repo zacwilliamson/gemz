@@ -21,11 +21,11 @@ class User < ApplicationRecord
   end
 
   def new_notifications
-    notifications.reverse.select { |n| n.was_read == false }
+    notifications.order('created_at DESC').reject(&:was_read)
   end
 
   def old_notifications
-    notifications.reverse.reject { |n| n.was_read == false }
+    notifications.order('created_at DESC').select(&:was_read)
   end
 
   def add_friend(other_user)
@@ -53,7 +53,6 @@ class User < ApplicationRecord
   end
 
   def feed
-    feed = Post.select { |p| active_friends.include?(p.user) || self == p.user }
-    feed.reverse
+    Post.order('created_at DESC').select { |p| active_friends.include?(p.user) || self == p.user }
   end
 end

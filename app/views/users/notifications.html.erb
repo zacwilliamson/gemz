@@ -11,8 +11,8 @@
         <%= link_to n.sender.username, n.sender %>
         <%= n.message %>
         <% if n.friend_request? %>
-        <% @user = n.sender %>
-        <%= render 'friend_form' %>
+          <% @user = n.sender %>
+          <%= render 'friend_form' %>
       <% end %>
       </li>
     <% end %>
@@ -26,8 +26,8 @@
       <%= link_to o.sender.username, o.sender %>
       <%= o.message %>
       <% if o.friend_request? %>
-        <% @user = o.sender %>
-        <%= render 'friend_form' %>
+          <% @user = o.sender %>
+          <%= render 'friend_form' %>
       <% end %>
     </li>
   <% end %>
