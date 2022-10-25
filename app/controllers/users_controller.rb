@@ -15,10 +15,7 @@ class UsersController < ApplicationController
     if current_user == @user
       @new = @user.new_notifications
       @old = @user.old_notifications
-      @new.each do |n|
-        n.was_read = true
-        n.save
-      end
+      @new.each(&:read)
     else
       redirect_to notifications_user_path(current_user)
     end
