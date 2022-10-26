@@ -1,4 +1,6 @@
 <%= render @post %>
+<p><%= @post.comments.count %> comments</p>
 <%= render 'comments/comment_form' %>
 <%= render @post.comments %>
+<hr>
  

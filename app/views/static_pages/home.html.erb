@@ -3,7 +3,14 @@
     <h1>Welcome <%= current_user.username %></h1>
     
     <%= render 'posts/post_form' %>
-    <%= render @feed unless @feed.empty? %>
+
+    <% unless @feed.empty? %>
+      <% @feed.each do |post| %>
+        <%= render post %>
+        <%= link_to "#{post.comments.count} Comments", post_path(post) %>
+        <hr>
+      <% end %>
+    <% end %>
   </div>
 <% else %>
   <div>
