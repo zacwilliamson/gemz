@@ -7,7 +7,9 @@ class CommentsController < ApplicationController
     redirect_to request.referrer
   end
 
-  def edit; end
-
-  def destroy; end
+  def destroy
+    comment = current_user.comments.find(params[:id])
+    comment.destroy
+    redirect_to request.referrer, status: :see_other
+  end
 end

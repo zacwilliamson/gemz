@@ -5,6 +5,10 @@
 
   <%= comment.content %>
   Posted <%= time_ago_in_words(comment.created_at) %> ago
-  
+
+  <% if current_user == comment.user %>
+      <%= button_to "Delete", comment, method: :delete %>
+  <% end %>
+
   <hr>
 </div>
