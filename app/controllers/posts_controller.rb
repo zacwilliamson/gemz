@@ -28,11 +28,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
-
   def show
     @comment = current_user.comments.build
   end
+
+  def edit; end
 
   private
 
