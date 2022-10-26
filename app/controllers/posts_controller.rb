@@ -30,7 +30,9 @@ class PostsController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    @comment = current_user.comments.build
+  end
 
   private
 

@@ -3,7 +3,7 @@ class ReactionsController < ApplicationController
 
   def create
     reactable = Post.find(params[:reactable_id])
-    reaction = Reaction.create(user: current_user, reactable: reactable)
+    reaction = current_user.reactions.create(reactable: reactable)
     notify(reactable.user, reaction) unless reactable.user == current_user
     redirect_to request.referrer
   end
