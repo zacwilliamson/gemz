@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = current_user.comments.build
+    @comments = @post.comments
   end
 
   def edit; end

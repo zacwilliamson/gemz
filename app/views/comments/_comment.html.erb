@@ -1,14 +1,7 @@
-<div>
-  <%= link_to comment.user.username, comment.user %> 
-
-  <br>
-
+<strong><%= comment.user.username %></strong>
   <%= comment.content %>
-  Posted <%= time_ago_in_words(comment.created_at) %> ago
-
   <% if current_user == comment.user %>
-      <%= button_to "Delete", comment, method: :delete %>
+    <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %>
   <% end %>
-
+  <br>
   <hr>
-</div>
