@@ -1,7 +1,7 @@
-<strong><%= comment.user.username %></strong>
-  <%= comment.content %>
-  <% if current_user == comment.user %>
-    <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete %>
-  <% end %>
+<% if comment.persisted? %>
+  <strong><%= comment.user.username %></strong>
+    <%= comment.content %>
+    <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete if current_user == comment.user %>
+<% end %>
   <br>
   <hr>
