@@ -72,7 +72,7 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_content("#{zac.username}'s Notifications")
   end
 
-  scenario 'when user is notified when their post is liked' do
+  scenario 'a user is notified when their post is liked' do
     # set up
     zoe.add_friend(zac)
     zac.add_friend(zoe)
@@ -106,6 +106,27 @@ RSpec.describe 'Notifications', type: :system do
     result_one = zac.reacted?(post) && zac.notifications.empty?
     expect(result_one).to be_truthy
     expect(page).to have_content('0 Notifications')
+  end
+
+  scenario 'a user is notified when their post recives a comment' do
+    # set up
+    zoe.add_friend(zac)
+    zac.add_friend(zoe)
+    zoe.posts.create(content: 'Simple test post')
+    post = zoe.posts.last
+
+    login_as(zac)
+    visit "/posts/#{post.id}"
+    fill_in 'Comment here...', with: 'Here is your comment'
+    click_on 'Post'
+    result_one = post.comments.last.content == 'Here is your comment'
+
+    expect(page).to have_content('Here is your comment')
+    expect(result_one).to be_truthy
+  end
+
+  scenario 'a user is not notified when they comment their own posts' do
+    # test here
   end
 end
 # rubocop:enable Metrics/BlockLength
