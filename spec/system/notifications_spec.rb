@@ -8,9 +8,9 @@ RSpec.describe 'Notifications', type: :system do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
 
-  # before do
-  #   driven_by(:rack_test)
-  # end
+  before do
+    driven_by(:rack_test)
+  end
 
   # break these tests up!
 
@@ -130,7 +130,18 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   scenario 'a user is not notified when they comment their own posts' do
-    # test here
+    # set up
+    zac.posts.create(content: 'Simple test post')
+    post = zac.posts.last
+
+    login_as(zac)
+    visit "/posts/#{post.id}"
+    fill_in 'Comment here...', with: 'My comment on my post'
+    click_on 'Post'
+    zac.reload
+    result_one = zac.notifications.empty?
+    expect(result_one).to be_truthy
+    expect(page).to have_content('My comment on my post')
   end
 end
 # rubocop:enable Metrics/BlockLength
