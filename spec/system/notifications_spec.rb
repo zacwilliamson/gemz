@@ -8,9 +8,9 @@ RSpec.describe 'Notifications', type: :system do
   let!(:zac) { create(:user, :zac) }
   let!(:zoe) { create(:user, :zoe) }
 
-  before do
-    driven_by(:rack_test)
-  end
+  # before do
+  #   driven_by(:rack_test)
+  # end
 
   # break these tests up!
 
@@ -120,9 +120,13 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'Comment here...', with: 'Here is your comment'
     click_on 'Post'
     result_one = post.comments.last.content == 'Here is your comment'
-
     expect(page).to have_content('Here is your comment')
     expect(result_one).to be_truthy
+
+    logout(zac)
+    login_as(zoe)
+    visit "/users/#{zoe.id}/notifications"
+    expect(page).to have_content("#{zac.username} commented on your post: Here is your comment")
   end
 
   scenario 'a user is not notified when they comment their own posts' do
