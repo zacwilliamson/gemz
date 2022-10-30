@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params)
-    notify(@post.user, @comment) unless @post.user == current_user
+    notify(@post.user, @comment)
     redirect_to post_path(@post)
   end
 
@@ -25,6 +25,8 @@ class CommentsController < ApplicationController
   end
 
   def notify(user, comment)
+    return if current_user == user
+
     user.notifications.create(notifiable: comment)
   end
 end

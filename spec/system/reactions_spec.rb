@@ -32,4 +32,8 @@ RSpec.describe 'Reactions', type: :system do
     expect(page).to have_xpath("//input[@value='Like']")
     expect(result_two).to be_falsey
   end
+
+  scenario "zac likes zoe's comment" do
+    # test here
+  end
 end
