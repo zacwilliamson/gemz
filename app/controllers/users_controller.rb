@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @add_friend = add_friend_btn
     @unfriend = unfriend_btn
+    @posts = set_posts
   end
 
   def friends
@@ -25,6 +26,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_posts
+    Post.where(['user_id = ?', @user.id])
+        .order('created_at DESC')
+        .page(params[:page])
   end
 
   def add_friend_btn

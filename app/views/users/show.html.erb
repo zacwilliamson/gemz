@@ -1,7 +1,19 @@
-<h1><%= @user.username %></h1>
+<h1>
+<%= gravatar_for(@user, { size: 100 }) %>
+<%= @user.username %>
+</h1>
 
- <%= render 'friend_form' %>
+<%= render 'friend_form' %>
 
-<div>
-  <p><%= link_to @user.active_friends.count, friends_user_path %> friends</p>
-</div>
+<p><%= link_to @user.active_friends.count, friends_user_path %> friends</p>
+
+<h2><%= pluralize(@posts.count, 'Post') %></h2>
+
+<% unless @posts.empty? %>
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
+    <hr>
+  <% end %>
+  <%= paginate @posts %>
+<% end %>
