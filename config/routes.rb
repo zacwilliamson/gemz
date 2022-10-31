@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root 'posts#index'
 
   devise_for :users
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get :notifications
     end
   end
-  resources :posts, only: %i[create destroy show edit update] do
+  resources :posts, only: %i[create destroy show edit update index] do
     resources :comments, only: %i[create destroy edit]
   end
 end

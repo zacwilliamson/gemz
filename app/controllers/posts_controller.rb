@@ -3,13 +3,22 @@ class PostsController < ApplicationController
   before_action :correct_user, only: %i[destroy edit update]
   before_action :log_in_user
 
+  def index
+    if user_signed_in?
+      @post = current_user.posts.build
+      @feed = current_user.feed
+    else
+      redirect_to new_user_registration_path
+    end
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = 'Your post is live'
       redirect_to root_url
     else
-      render 'static_pages/home', status: :unprocessable_entity
+      redirect_to root_url, status: :unprocessable_entity
     end
   end
 

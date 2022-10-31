@@ -1,0 +1,13 @@
+<div>
+  <h1>Welcome <%= current_user.username %></h1>
+    
+  <%= render 'posts/post_form' %>
+
+  <% unless @feed.empty? %>
+    <% @feed.each do |post| %>
+      <%= render post %>
+      <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
+      <hr>
+    <% end %>
+  <% end %>
+</div>

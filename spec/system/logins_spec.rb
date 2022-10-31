@@ -10,9 +10,8 @@ RSpec.describe 'Logins', type: :system do
   it 'shows homepage (not logged in user)' do
     logout(:user)
     visit root_path
-    expect(page).to have_content('Sign in')
     expect(page).to have_content('Sign up')
-    expect(page).to have_content('Welcome to Fakebook')
+    expect(page).to have_content('Log in')
   end
 
   it 'shows homepage (logged in user)' do
