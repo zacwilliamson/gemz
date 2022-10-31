@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   def index
     if user_signed_in?
       @post = current_user.posts.build
-      @feed = current_user.feed
+      @feed = set_feed
+
     else
       redirect_to new_user_registration_path
     end
@@ -53,7 +54,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def set_feed
+    Post.where(['user_id = ? or user_id in (?)', current_user.id, active_friend_ids])
+        .order('created_at DESC')
+        .page(params[:page])
+  end
+
   def correct_user
     redirect_to root_url, status: :see_other unless @post.user == current_user
+  end
+
+  def active_friend_ids
+    current_user.active_friends.map(&:id)
   end
 end

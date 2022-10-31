@@ -9,5 +9,6 @@
       <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
       <hr>
     <% end %>
+    <%= paginate @feed %>
   <% end %>
 </div>
