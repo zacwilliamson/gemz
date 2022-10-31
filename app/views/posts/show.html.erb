@@ -3,5 +3,5 @@
 <h2>Add a comment:</h2>
 <%= render 'comments/comment_form' %>
 
-<h2><%= @comments.count %> Comments</h2>
+<h2><%= pluralize(@comments.count, 'Comment') %></h2>
 <%= render @comments %>

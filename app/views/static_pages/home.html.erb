@@ -7,7 +7,7 @@
     <% unless @feed.empty? %>
       <% @feed.each do |post| %>
         <%= render post %>
-        <%= link_to "#{post.comments.count} Comments", post_path(post) %>
+        <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
         <hr>
       <% end %>
     <% end %>

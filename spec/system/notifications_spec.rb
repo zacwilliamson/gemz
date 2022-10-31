@@ -24,7 +24,7 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     zac.reload
     result_one = zac.recived_request?(zoe) && zac.notifications.last.notifiable_type == 'Friendship'
-    expect(page).to have_content('1 Notifications')
+    expect(page).to have_content('1 Notification')
     expect(result_one).to be_truthy
 
     click_on '1'
@@ -89,7 +89,7 @@ RSpec.describe 'Notifications', type: :system do
     logout(zac)
     login_as(zoe)
     visit '/'
-    expect(page).to have_content('1 Notifications')
+    expect(page).to have_content('1 Notification')
 
     visit "/users/#{zoe.id}/notifications"
     expect(page).to have_content("#{zac.username} liked your post: #{post.content}")
