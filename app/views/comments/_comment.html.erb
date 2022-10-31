@@ -1,7 +1,13 @@
 <% if comment.persisted? %>
   <strong><%= comment.user.username %></strong>
     <%= comment.content %>
-    <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete if current_user == comment.user %>
+
+    <br>
+
+  <%= comment.reactions.count %>
+  <%= render 'reactions/reaction_form',  :@reactable => comment %>
+
+  <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete if current_user == comment.user %>
 <% end %>
   <br>
   <hr>

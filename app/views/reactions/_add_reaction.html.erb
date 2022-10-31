@@ -1,4 +1,5 @@
 <%= form_with(model: current_user.reactions.build) do |f| %>
   <%= hidden_field_tag :reactable_id, @reactable.id %>
+  <%= hidden_field_tag :reactable_type, @reactable.class.name %>
   <%= f.submit 'Like' %>
 <% end %>

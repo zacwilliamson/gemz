@@ -2,6 +2,7 @@ class ReactionsController < ApplicationController
   before_action :log_in_user
 
   def create
+    debugger
     reactable = Post.find(params[:reactable_id]) # instead of Post.find, needs to be Reactable.find
     reaction = current_user.reactions.create(reactable: reactable)
     notify(reactable.user, reaction)
@@ -21,4 +22,8 @@ class ReactionsController < ApplicationController
 
     user.notifications.create(notifiable: reaction)
   end
+
+  # def set_reactable
+  #   params[:reactable]
+  # end
 end

@@ -34,6 +34,21 @@ RSpec.describe 'Reactions', type: :system do
   end
 
   scenario "zac likes zoe's comment" do
-    # test here
+    # set up
+    zoe.add_friend(zac)
+    zac.add_friend(zoe)
+    zoe.posts.create(content: 'Simple test post')
+    post = zoe.posts.last
+    zac.reactions.create(reactable: post)
+    comment = zac.comments.create(post: post, content: 'Hey its my comment!')
+
+    login_as(zac)
+    visit "/posts/#{post.id}"
+    click_on 'Like'
+    zac.reload
+    result_one = zac.reacted?(comment)
+
+    expect(result_one).to be_truthy
+    expect(page).to have_content('1')
   end
 end
