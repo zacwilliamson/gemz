@@ -4,13 +4,10 @@ class PostsController < ApplicationController
   before_action :log_in_user
 
   def index
-    if user_signed_in?
-      @post = current_user.posts.build
-      @feed = set_feed
+    return unless user_signed_in?
 
-    else
-      redirect_to new_user_registration_path
-    end
+    @post = current_user.posts.build
+    @feed = set_feed
   end
 
   def create

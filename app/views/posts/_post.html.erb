@@ -1,8 +1,7 @@
 <div>
-  <%= link_to post.user.username, post.user %>
+  <strong><%= link_to post.user.username, post.user %></strong>
   <%= post.content %>
 
-  Posted <%= time_ago_in_words(post.created_at) %> ago
   <% if current_user == post.user %>
       <%= button_to "Delete", post, method: :delete %>
       <%= link_to "Edit", edit_post_path(post) %>
@@ -12,4 +11,9 @@
 
   <%= post.reactions.count %>
   <%= render 'reactions/reaction_form',  :@reactable => post %>
+
+  <br>
+
+  <%= time_ago_in_words(post.created_at) %> ago
+
 </div>
