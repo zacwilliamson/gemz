@@ -33,7 +33,7 @@ RSpec.describe 'Reactions', type: :system do
     expect(result_two).to be_falsey
   end
 
-  scenario "zac likes zoe's comment" do
+  scenario "zac likes zoe's comment (and zoe is not notified)" do
     # set up
     zoe.add_friend(zac)
     zac.add_friend(zoe)
@@ -46,9 +46,12 @@ RSpec.describe 'Reactions', type: :system do
     visit "/posts/#{post.id}"
     click_on 'Like'
     zac.reload
+    zoe.reload
     result_one = zac.reacted?(comment)
+    result_two = zoe.notifications.empty?
 
     expect(result_one).to be_truthy
+    expect(result_two).to be_truthy
     expect(page).to have_content('1')
   end
 end

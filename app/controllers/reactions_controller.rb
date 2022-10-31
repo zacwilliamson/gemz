@@ -1,11 +1,10 @@
 class ReactionsController < ApplicationController
   before_action :log_in_user
+  before_action :set_reactable, only: %i[create]
 
   def create
-    debugger
-    reactable = Post.find(params[:reactable_id]) # instead of Post.find, needs to be Reactable.find
-    reaction = current_user.reactions.create(reactable: reactable)
-    notify(reactable.user, reaction)
+    reaction = current_user.reactions.create(reactable: @reactable)
+    notify(@reactable.user, reaction)
     redirect_to request.referrer
   end
 
@@ -17,13 +16,17 @@ class ReactionsController < ApplicationController
 
   private
 
+  def reaction_params
+    params.require(:reaction).permit(:reactable_id, :reactable_type)
+  end
+
+  def set_reactable
+    @reactable = reaction_params[:reactable_type].constantize.find(reaction_params[:reactable_id])
+  end
+
   def notify(user, reaction)
-    return if current_user == user
+    return if current_user == user || reaction.reactable_type == 'Comment'
 
     user.notifications.create(notifiable: reaction)
   end
-
-  # def set_reactable
-  #   params[:reactable]
-  # end
 end
