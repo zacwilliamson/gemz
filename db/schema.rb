@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_25_205457) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_142139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_205457) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "location"
+    t.string "full_name"
+    t.string "bio"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "reactions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "reactable_id"
@@ -78,5 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_205457) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "users"
   add_foreign_key "reactions", "users"
 end
