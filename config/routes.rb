@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get :friends
       get :notifications
+      resources :profile, only: %i[new create edit update]
     end
   end
   resources :posts, only: %i[create destroy show edit update index] do
