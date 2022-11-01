@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
-  def new; end
+  def new
+    @profile = current_user.build_profile
+  end
 
   def create; end
 

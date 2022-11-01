@@ -1,0 +1,21 @@
+<%= form_with(model: @profile) do |f| %>
+  <div>
+    <%= f.text_field :full_name, placeholder: 'Full Name' %>
+  </div>
+
+  <div>
+    <%= f.text_field :location, placeholder: 'Location' %>
+  </div>
+
+  <div>
+    <%= f.text_field :link, placeholder: 'Website' %>
+  </div>
+
+  <div>
+    <%= f.text_area :bio, placeholder: 'Bio' %>
+  </div>
+
+  <div>
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
