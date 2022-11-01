@@ -1,4 +1,5 @@
 <% if comment.persisted? %>
+  <%= gravatar_for(comment.user, { size: 40 }) %>
   <strong><%= link_to comment.user.username, comment.user %></strong>
     <%= comment.content %>
 

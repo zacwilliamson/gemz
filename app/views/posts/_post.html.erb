@@ -1,4 +1,5 @@
 <div>
+  <%= gravatar_for(post.user, { size: 40 }) %>
   <strong><%= link_to post.user.username, post.user %></strong>
   <%= post.content %>
 

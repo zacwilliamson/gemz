@@ -1,4 +1,5 @@
 <li>
+  <%= gravatar_for(notification.sender, { size: 40 }) %>
   <%= link_to notification.sender.username, notification.sender %>
 
   <%= notification.message %>
