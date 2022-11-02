@@ -13,9 +13,17 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def edit; end
+  def update
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
+      flash[:notice] = 'Your profile was updated'
+      redirect_to @profile.user
+    else
+      redirect_to request.referrer, status: :see_other
+    end
+  end
 
-  def update; end
+  def edit; end
 
   private
 
