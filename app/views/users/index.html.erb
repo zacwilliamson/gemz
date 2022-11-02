@@ -1,8 +1,18 @@
 <h1>Find Friends</h1>
 
+<%= form_with url: "/users", method: :get, remote: true do |f| %>
+  <%= f.text_field(:username, placeholder: 'Search username here...') %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% @add_friend = 'Add friend'
+   @unfriend = 'Request sent' %>
+
 <ul>
   <% @users.each do |u| %>
-    <%= u.username %>
+    <%= gravatar_for(u, { size: 40 }) %>
+    <%= link_to u.username, u %>
+    <%= render 'friend_form',  :@user => u %>
   <% end %>
 </ul>
 <%= paginate @users %>
