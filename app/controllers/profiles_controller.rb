@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :set_profile, only: %i[update]
+
   def new
     @profile = current_user.build_profile
   end
@@ -14,7 +16,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
       flash[:notice] = 'Your profile was updated'
       redirect_to @profile.user
@@ -29,5 +30,9 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:full_name, :location, :link, :bio)
+  end
+
+  def set_profile
+    @profile = Profile.find(params[:id])
   end
 end

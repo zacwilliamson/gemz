@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :friendships, only: %i[create destroy]
   resources :reactions, only: %i[create destroy]
-  resources :users, only: %i[show notifications] do
+  resources :users, only: %i[show notifications index friends] do
     member do
       get :friends
       get :notifications

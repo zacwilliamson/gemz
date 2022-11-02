@@ -1,9 +1,9 @@
 <% if current_user == @user %>
   <div>
   <% if current_user.profile.nil? %>
-    <%= link_to 'Create profile',  new_profile_path(@user) %>
+    <%= link_to 'Create profile',  new_profile_path(current_user) %>
   <% else %>
-     <%= link_to 'Edit profile',  edit_profile_path(@user.profile) %>
+     <%= link_to 'Edit profile',  edit_profile_path(current_user.profile) %>
   <% end %>
   </div>
 <% end %>
