@@ -3,9 +3,10 @@
 <%= @user.username %>
 </h1>
 
-<%= render 'friend_form' %>
+<%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path %>
 
-<p><%= link_to @user.active_friends.count, friends_user_path %> friends</p>
+<%= render 'friend_form' %>
+<%= render @user.profile unless @user.profile.nil? %>
 
 <h2><%= pluralize(@posts.count, 'Post') %></h2>
 
