@@ -6,6 +6,9 @@
 <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path %>
 
 <%= render 'friend_form' %>
+
+<%= render 'profiles/profile_links' %>
+
 <%= render @user.profile unless @user.profile.nil? %>
 
 <h2><%= pluralize(@posts.count, 'Post') %></h2>
