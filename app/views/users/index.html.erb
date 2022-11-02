@@ -1,1 +1,8 @@
 <h1>Find Friends</h1>
+
+<ul>
+  <% @users.each do |u| %>
+    <%= u.username %>
+  <% end %>
+</ul>
+<%= paginate @users %>
