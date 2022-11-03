@@ -5,9 +5,6 @@
   <%= f.submit "Search" %>
 <% end %>
 
-<% @add_friend = 'Add friend'
-   @unfriend = 'Request sent' %>
-
 <ul>
   <% @users.each do |u| %>
     <%= gravatar_for(u, { size: 40 }) %>

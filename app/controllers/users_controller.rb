@@ -10,12 +10,9 @@ class UsersController < ApplicationController
                    .order('username DESC')
                    .page(params[:page])
              end
-    # @users = set_users
   end
 
   def show
-    @add_friend = add_friend_btn
-    @unfriend = unfriend_btn
     @posts = set_posts
   end
 
@@ -53,23 +50,5 @@ class UsersController < ApplicationController
 
   def friend_ids
     current_user.friends.map(&:id)
-  end
-
-  def add_friend_btn
-    if current_user.recived_request?(@user)
-      'Accept'
-    else
-      'Add friend'
-    end
-  end
-
-  def unfriend_btn
-    if current_user.recived_request?(@user)
-      'Decline'
-    elsif current_user.pending_friends.include?(@user)
-      'Request sent'
-    else
-      'Unfriend'
-    end
   end
 end

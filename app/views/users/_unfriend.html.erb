@@ -1,11 +1,11 @@
 <% if current_user.recived_request?(@user)%>
   <%= form_with(model: @user.friendships.find_by(friend: current_user),
               html: { method: :delete }) do |f| %>
-  <%= f.submit @unfriend %>
+  <%= f.submit unfriend_btn(current_user, @user) %>
   <% end %>
 <% else %>
   <%= form_with(model: current_user.friendships.find_by(friend: @user),
               html: { method: :delete }) do |f| %>
-  <%= f.submit @unfriend %>
+  <%= f.submit unfriend_btn(current_user, @user) %>
   <% end %>
 <% end %>
