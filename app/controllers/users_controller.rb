@@ -3,7 +3,14 @@ class UsersController < ApplicationController
   before_action :log_in_user
 
   def index
-    @users = set_users
+    @users = if params[:username].nil?
+               set_users
+             else
+               User.find_friends(params[:username])
+                   .order('username DESC')
+                   .page(params[:page])
+             end
+    # @users = set_users
   end
 
   def show

@@ -53,4 +53,8 @@ class User < ApplicationRecord
     all_reactions = reactable.reactions.map(&:user)
     all_reactions.include?(self)
   end
+
+  def self.find_friends(username)
+    where(['username LIKE ? ', "#{username}%"])
+  end
 end
