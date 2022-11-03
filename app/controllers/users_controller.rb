@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def set_users
-    User.where(['id not in (?) and id !=(?)', friend_ids, current_user.id])
+    User.where(['id not in (?)', friend_ids])
         .order('username DESC')
         .page(params[:page])
   end
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   end
 
   def friend_ids
-    current_user.friends.map(&:id)
+    current_user.friends.map(&:id) << current_user.id
   end
 end
