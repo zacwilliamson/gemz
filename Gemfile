@@ -2,12 +2,17 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
+gem 'activerecord-session_store'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'faker'
+gem "figaro"
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'

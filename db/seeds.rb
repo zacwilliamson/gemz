@@ -8,10 +8,6 @@
 if User.all.count >= 75
   return
 else
-  User.create!(username: 'zaxwilliamson',
-               email: 'zacwilliamson@icloud.com',
-               password: 'foobar')
-
   75.times do |n|
     name = Faker::FunnyName.two_word_name
 
