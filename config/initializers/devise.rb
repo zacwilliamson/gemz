@@ -273,6 +273,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, Figaro.env.facebook_app_id, Figaro.env.facebook_app_secret
+  config.omniauth :github, Figaro.env.github_app_id, Figaro.env.github_app_secret, scope: 'user:email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
