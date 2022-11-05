@@ -3,6 +3,7 @@
 <ul>
   <% @friends.each do |friend|%>
     <li>
+      <%= gravatar_for(friend, { size: 40 }) %>
       <%= link_to friend.username, friend %>
     </li>
   <% end %> 
