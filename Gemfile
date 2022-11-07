@@ -6,7 +6,7 @@ gem 'activerecord-session_store'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'faker'
-gem "figaro"
+gem 'figaro'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari'
@@ -36,3 +36,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"
