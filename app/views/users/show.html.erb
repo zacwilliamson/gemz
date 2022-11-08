@@ -3,7 +3,9 @@
 <%= @user.username %>
 </h1>
 
-<%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path %>
+<span id=<%= "friend_count#{@user.id}" %>>
+<%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>
+</span>
 
 <%= render 'friend_form' %>
 

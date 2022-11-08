@@ -1,5 +1,5 @@
 <% unless current_user == @user %>
-  <div id=<%= "friend_form#{@user.id}" %>>
+  <div id=<%= "friend_form#{@user.id}" %> >
   <% if current_user.recived_request?(@user) %>
     <%= render 'unfriend', :user => @user %>
     <%= render 'add_friend', :user => @user %>
