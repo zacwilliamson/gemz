@@ -1,3 +1,3 @@
-<%= turbo_stream.update "friend_form" do %>
-  <%= render "users/unfriend" %>
+<%= turbo_stream.update "friend_form#{@user.id}" do %>
+  <%= render "users/unfriend", :user => @user  %>
 <% end %>

@@ -1,12 +1,12 @@
 <% unless current_user == @user %>
-  <div id="friend_form">
+  <div id=<%= "friend_form#{@user.id}" %>>
   <% if current_user.recived_request?(@user) %>
-    <%= render 'unfriend' %>
-    <%= render 'add_friend' %>
+    <%= render 'unfriend', :user => @user %>
+    <%= render 'add_friend', :user => @user %>
   <% elsif current_user.friends_with?(@user) || current_user.pending_friends.include?(@user) %>
-    <%= render 'unfriend' %>
+    <%= render 'unfriend', :user => @user %>
   <% else %>
-     <%= render 'add_friend' %>
+     <%= render 'add_friend', :user => @user %>
   <% end %>
   </div>
 <% end %>
