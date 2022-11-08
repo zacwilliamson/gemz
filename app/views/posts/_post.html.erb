@@ -10,7 +10,7 @@
 
   <br>
 
-  <%= post.reactions.count %>
+  <span id=<%= "post_reaction_count#{post.id}" %> ><%= post.reactions.count %></span>
   <%= render 'reactions/reaction_form',  :@reactable => post %>
 
   <br>

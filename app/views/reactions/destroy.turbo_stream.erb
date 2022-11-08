@@ -1,3 +1,8 @@
 <%= turbo_stream.update "reaction_form#{@reactable.id}" do %>
   <%= render "add_reaction" %>
 <% end %>
+
+<% type = @reactable.class.name.downcase %>
+<%= turbo_stream.update "#{type}_reaction_count#{@reactable.id}" do %>
+  <%= @reactable.reactions.count %>
+<% end %>
