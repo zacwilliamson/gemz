@@ -5,13 +5,20 @@ class ReactionsController < ApplicationController
   def create
     reaction = current_user.reactions.create(reactable: @reactable)
     notify(@reactable.user, reaction)
-    redirect_to request.referrer
+    respond_to do |format|
+      format.html { redirect_to request.referrer }
+      format.turbo_stream
+    end
   end
 
   def destroy
     reaction = current_user.reactions.find(params[:id])
+    @reactable = reaction.reactable
     reaction.destroy
-    redirect_to request.referrer, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to request.referrer, status: :see_other }
+      format.turbo_stream
+    end
   end
 
   private

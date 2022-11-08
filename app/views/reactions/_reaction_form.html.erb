@@ -1,5 +1,7 @@
-<% if current_user.reacted?(@reactable) %>
-  <%= render 'reactions/unreact' %>
-<% else %>
-  <%= render 'reactions/add_reaction' %>
-<% end %>
+<div id=<%= "reaction_form#{@reactable.id}"%> >
+  <% if current_user.reacted?(@reactable) %>
+    <%= render 'reactions/unreact' %>
+  <% else %>
+    <%= render 'reactions/add_reaction' %>
+  <% end %>
+</div>
