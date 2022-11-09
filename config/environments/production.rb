@@ -99,8 +99,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: 'fakebookonrender@gmail.com',
-    password: 'tqirtgquftwkybii',
+    user_name: Figaro.env.gmail_username,
+    password: Figaro.env.gmail_password,
     authentication: 'plain',
     enable_starttls_auto: true
   }
