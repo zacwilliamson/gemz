@@ -17,8 +17,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   after_create :welcome_send
+
   def welcome_send
-    # WelcomeMailer.welcome_send(self).deliver
+    WelcomeMailer.welcome_send(self).deliver
   end
 
   def active_friends
