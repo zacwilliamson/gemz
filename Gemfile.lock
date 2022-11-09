@@ -142,6 +142,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -316,6 +320,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  letter_opener
   omniauth-facebook
   omniauth-github
   omniauth-rails_csrf_protection

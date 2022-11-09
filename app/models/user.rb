@@ -16,6 +16,11 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  after_create :welcome_send
+  def welcome_send
+    WelcomeMailer.welcome_send(self).deliver
+  end
+
   def active_friends
     friends.select { |their| their.friends.include?(self) }
   end

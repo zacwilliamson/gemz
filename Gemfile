@@ -28,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
   gem 'web-console'
 end
 
@@ -38,4 +39,4 @@ group :test do
 end
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'
