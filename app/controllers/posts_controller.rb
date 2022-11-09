@@ -14,16 +14,22 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = 'Your post is live'
-      redirect_to root_url
+      respond_to do |format|
+        format.html { redirect_to request.referrer }
+        # format.turbo_stream
+      end
     else
-      redirect_to root_url, status: :unprocessable_entity
+      redirect_to request.referrer, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
     flash[:notice] = 'Your post was deleted'
-    redirect_to root_url, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to root_url, status: :see_other }
+      # format.turbo_stream
+    end
   end
 
   def update

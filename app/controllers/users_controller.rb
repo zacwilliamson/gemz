@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @posts = set_posts
+    @post = current_user.posts.build
   end
 
   def friends
