@@ -1,6 +1,4 @@
-<% if current_user == @user %>
-  <%= form_with(model: @post) do |f| %>
-    <%= f.text_area :content, placeholder: "Write your new post here..." %>
-    <%= f.submit "Post" %>
-  <% end %>
+<%= form_with(model: @post) do |f| %>
+  <%= f.text_area :content, placeholder: "Write your new post here..." %>
+  <%= f.submit "Post" %>
 <% end %>

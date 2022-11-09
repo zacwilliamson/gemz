@@ -15,7 +15,7 @@
 
 <h2><%= pluralize(@posts.count, 'Post') %></h2>
 
-<%= render 'posts/post_form' %>
+<%= render 'posts/post_form' if @user == current_user %>
 
 <% unless @posts.empty? %>
   <% @posts.each do |post| %>

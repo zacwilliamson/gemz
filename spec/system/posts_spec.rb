@@ -56,5 +56,17 @@ RSpec.describe 'Posts', type: :system do
     expect(page).to_not have_content('Yee yee')
     expect(page).to have_content('Yee haw')
   end
+
+  scenario 'user makes a post from their show page' do
+    login_as(zac)
+    visit "/users/#{zac.id}"
+    fill_in 'Write your new post here...', with: 'Test post'
+    click_on 'Post'
+    zac.reload
+    result_one = zac.posts.last.content == 'Test post'
+    expect(page).to have_content('Test post')
+    expect(page).to have_content('Your post is live')
+    expect(result_one).to be_truthy
+  end
 end
 # rubocop:enable Metrics/BlockLength
