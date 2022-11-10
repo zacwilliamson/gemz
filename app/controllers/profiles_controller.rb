@@ -1,20 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[update]
 
-  def new
-    @profile = current_user.build_profile
-  end
-
-  def create
-    @profile = current_user.build_profile(profile_params)
-    if @profile.save
-      flash[:notice] = 'Your profile was created'
-      redirect_to current_user
-    else
-      redirect_to current_user, status: :unprocessable_entity
-    end
-  end
-
   def update
     if @profile.update(profile_params)
       flash[:notice] = 'Your profile was updated'

@@ -11,7 +11,7 @@ RSpec.describe 'Profiles', type: :system do
   scenario 'user can set up profile and display info on their show page' do
     login_as(zac)
     visit "/users/#{zac.id}"
-    click_on 'Create profile'
+    click_on 'Edit profile'
     fill_in 'Full Name', with: 'Zac Williamson'
     fill_in 'Location', with: 'Las Vegas'
     fill_in 'Website', with: 'fakebook.com'

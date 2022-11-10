@@ -12,6 +12,6 @@
   </div>
 
   <div>
-    <%= link_to profile.link, profile.link %>
+    <%= link_to profile.link, profile.link unless profile.link.nil? %>
   </div>
 </div>
