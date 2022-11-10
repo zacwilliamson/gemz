@@ -3,7 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 gem 'activerecord-session_store'
-gem "active_storage_validations", "0.9.8"
+gem 'active_storage_validations', '0.9.8'
+gem 'aws-sdk-s3', '1.114.0', require: false
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'faker'
