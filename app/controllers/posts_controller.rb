@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.image.attach(params[:post][:image])
     if @post.save
       flash[:notice] = 'Your post is live'
       respond_to do |format|
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :image)
   end
 
   def set_post
