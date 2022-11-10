@@ -2,7 +2,10 @@
   <%= gravatar_for(post.user, { size: 40 }) %>
   <strong><%= link_to post.user.username, post.user %></strong>
   <%= post.content %>
-  <%= image_tag post.image if post.image.attached? %>
+  <div>
+    <%= image_tag post.image.variant(:display) if post.image.attached? %>
+  <div>
+
 
   <% if current_user == post.user %>
       <%= button_to "Delete", post, method: :delete %>
