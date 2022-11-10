@@ -2,6 +2,6 @@
   <%= f.text_area :content, placeholder: "Write your new post here..." %>
   <%= f.submit "Post" %>
   <span class="image">
-    <%= f.file_field :image %>
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
 <% end %>
