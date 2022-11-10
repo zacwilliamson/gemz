@@ -7,6 +7,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'faker'
 gem 'figaro'
+gem 'image_processing', '>= 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari'
