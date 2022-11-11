@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
+      attach_img
       flash[:notice] = 'Your profile was updated'
       redirect_to @profile.user
     else
@@ -14,8 +15,14 @@ class ProfilesController < ApplicationController
 
   private
 
+  def attach_img
+    return if params[:profile][:image].nil?
+
+    @profile.image.attach(params[:profile][:image])
+  end
+
   def profile_params
-    params.require(:profile).permit(:full_name, :location, :link, :bio)
+    params.require(:profile).permit(:full_name, :location, :link, :bio, :image)
   end
 
   def set_profile
