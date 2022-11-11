@@ -1,0 +1,3 @@
+<%= turbo_stream.update "reaction_form#{@reactable.id}" do %>
+  <%= @reactable.reactions.count %>
+<% end %>

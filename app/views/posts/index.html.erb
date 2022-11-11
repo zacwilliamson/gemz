@@ -4,11 +4,13 @@
   <%= render 'posts/post_form' %>
 
   <% unless @feed.empty? %>
+  <div id="feed">
     <% @feed.each do |post| %>
       <%= render post %>
       <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
       <hr>
     <% end %>
     <%= paginate @feed %>
+  </div>
   <% end %>
 </div>

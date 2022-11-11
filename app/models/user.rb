@@ -58,6 +58,11 @@ class User < ApplicationRecord
     recived_friends.include?(other_user) && !friends_with?(other_user)
   end
 
+  def feed
+    Post.where(['user_id = ? or user_id in (?)', id, active_friends.map(&:id)])
+        .order('created_at DESC')
+  end
+
   def reacted?(reactable)
     all_reactions = reactable.reactions.map(&:user)
     all_reactions.include?(self)
