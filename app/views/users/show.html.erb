@@ -1,9 +1,10 @@
-<img src=<%= gravitar_url(@user) %> 
+<img src=<%= profile_img(@user) %> 
      class="border-solid border-2 border-gray-500 rounded-full w-20 h-20 md:w-60 md:h-60 lg:w-64 lg:h-64">
 
 <h1>
 <%= @user.username %>
 </h1>
+
 
 <span id=<%= "friend_count#{@user.id}" %>>
 <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>

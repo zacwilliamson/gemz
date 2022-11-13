@@ -1,4 +1,12 @@
 module UsersHelper
+  def profile_img(user)
+    if user.profile.image.attached?
+      url_for(user.profile.image)
+    else
+      gravatar_url(user)
+    end
+  end
+
   def gravatar_for(user, options = { size: 80 })
     size = options[:size]
     gravatar_id  = Digest::MD5.hexdigest(user.email.downcase)
@@ -6,7 +14,7 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.username, class: 'gravatar')
   end
 
-  def gravitar_url(user)
+  def gravatar_url(user)
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     "https://secure.gravatar.com/avatar/#{gravatar_id}?s=250&d=retro"
   end
