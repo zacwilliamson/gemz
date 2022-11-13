@@ -2,8 +2,13 @@ module UsersHelper
   def gravatar_for(user, options = { size: 80 })
     size = options[:size]
     gravatar_id  = Digest::MD5.hexdigest(user.email.downcase)
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}&d=identicon"
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}&d=retro"
     image_tag(gravatar_url, alt: user.username, class: 'gravatar')
+  end
+
+  def gravitar_url(user)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "https://secure.gravatar.com/avatar/#{gravatar_id}?s=250&d=retro"
   end
 
   def add_friend_btn(current_user, user)
