@@ -1,32 +1,34 @@
-<nav>
-    <ul class="flex space-x-5 text-lg">
-        <% if current_user %>
-            <li>
-            <%= link_to 'Home', root_path %>
+<% if current_user %>
+    <nav class="p-5 bg-white shadow md:flex md:items-center md:justify-between">
+        <div class="flex justify-between items-center ">
+        <span class="cursor-pointer">
+            <%= link_to 'Fakebook', root_path, class:'text-4xl font-bold text-xl hover:text-emerald-400 duration-500'%>
+        </span>
+        <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+            <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+        </span>
+        </div>
+        <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to 'Home', root_path, class:'text-xl hover:text-emerald-400 duration-500'%>
             </li>
-            <li>
-            <%= link_to current_user.username, current_user %>
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to current_user.username, current_user, class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
-            <li>
-            <%= link_to "#{pluralize(current_user.new_notifications.count, 'Notification')}",
-             notifications_user_path(current_user) %>
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to "#{pluralize(current_user.new_notifications.count, 'Notification')}",
+                    notifications_user_path(current_user), class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
-            <li>
-            <%= link_to "Find friends", users_path %>
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to "Find friends", users_path, class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
-            <li>
-            <%= link_to "Settings", edit_user_registration_path %>
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to "Settings", edit_user_registration_path, class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
-            <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+            <li class="mx-4 my-6 md:my-0">
+                <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, 
+                        class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
-        <% else %>
-            <li class="nav-item">
-            <%= link_to_unless_current "Sign in", new_user_session_path %>
-            </li>
-            <li class="nav-item">
-            <%= link_to_unless_current "Sign up", new_user_registration_path %>
-            </li>
-        <% end %>
-    </ul>
-</nav>
+        </ul>
+    </nav>
+<% end %>
