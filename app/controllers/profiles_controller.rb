@@ -16,9 +16,11 @@ class ProfilesController < ApplicationController
   private
 
   def attach_img
-    return if params[:profile][:image].nil?
-
-    @profile.image.attach(params[:profile][:image])
+    if params[:profile][:default_image] == '1'
+      @profile.image.destroy
+    elsif !params[:profile][:image].nil?
+      @profile.image.attach(params[:profile][:image])
+    end
   end
 
   def profile_params

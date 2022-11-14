@@ -22,4 +22,11 @@
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
+
+  <% if profile.image.attached? %>
+    <div>
+      <%= f.label :default_image, "Set gravitar as profile image" %>
+      <%= f.check_box :default_image %>
+    </div>
+  <% end %>
 <% end %>
