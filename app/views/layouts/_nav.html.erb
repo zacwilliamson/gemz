@@ -1,17 +1,14 @@
 <% if current_user %>
-    <nav class="p-5 bg-white shadow md:flex md:items-center md:justify-between">
+    <nav class="py-3 shadow md:flex md:items-center md:justify-between bg-white">
         <div class="flex justify-between items-center ">
         <span class="cursor-pointer">
             <%= link_to 'Fakebook', root_path, class:'text-4xl font-bold text-xl hover:text-emerald-400 duration-500'%>
         </span>
         <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-            <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+            <ion-icon id="burger" name="menu" onclick="Menu(this)"></ion-icon>
         </span>
         </div>
-        <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-            <li class="mx-4 my-6 md:my-0">
-                <%= link_to 'Home', root_path, class:'text-xl hover:text-emerald-400 duration-500'%>
-            </li>
+        <ul id="list" class="md:flex md:items-center z-[-1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:opacity-100 opacity-0 top-[-400px] z-10 transition-all ease-in duration-500">
             <li class="mx-4 my-6 md:my-0">
                 <%= link_to current_user.username, current_user, class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
@@ -32,3 +29,10 @@
         </ul>
     </nav>
 <% end %>
+
+<script>
+    function Menu(e){
+      let list = document.querySelector('#list');
+      e.name === 'menu' ? (e.name = "close",list.classList.add('top-[70px]') , list.classList.add('opacity-100'), list.classList.add('bg-white')) :( e.name = "menu" ,list.classList.remove('top-[70px]'),list.classList.remove('opacity-100'), list.classList.add('bg-white'))
+    }
+</script>
