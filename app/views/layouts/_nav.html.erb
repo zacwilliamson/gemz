@@ -8,7 +8,7 @@
             <ion-icon id="burger" name="menu"></ion-icon>
         </span>
         </div>
-        <ul id="list" class="md:flex md:items-center z-[1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:opacity-100 top-[-400px] z-10 transition-all ease-in duration-500">
+         <ul id="list" class="md:flex md:items-center z-[1] md:z-auto md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:opacity-100 top-[-400px] z-10 transition-all ease-in duration-500">
             <li class="mx-4 my-6 md:my-0">
                 <%= link_to current_user.username, current_user, class:'text-xl hover:text-emerald-400 duration-500' %>
             </li>
@@ -25,6 +25,9 @@
             <li class="mx-4 my-6 md:my-0">
                 <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, 
                         class:'text-xl hover:text-emerald-400 duration-500' %>
+            </li>
+            <li class="mx-4 my-6 md:my-0">
+                <button id="dark-mode" class="text-xl">Moon</button>
             </li>
         </ul>
     </nav>
