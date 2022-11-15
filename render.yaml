@@ -1,18 +1,18 @@
 databases:
-  - name: fakebook
-    databaseName: fakebook
-    user: fakebook
+  - name: gemz
+    databaseName: gemz
+    user: gemz
 
 services:
   - type: web
-    name: fakebook
+    name: gemz
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: fakebook
+          name: gemz
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
