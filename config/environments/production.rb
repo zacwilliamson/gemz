@@ -93,14 +93,14 @@ Rails.application.configure do
 
   # Gmail configuration
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'fakebook.onrender.com' }
+  config.action_mailer.default_url_options = { host: 'gemz.onrender.com' }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    user_name: 'fakebookonrender@gmail.com',
-    password: 'itrygkmdulyklxyh',
+    user_name: 'gemzonrender@gmail.com',
+    password: 'ffnbovlqqzdyzlxs',
     authentication: 'plain',
     enable_starttls_auto: true
   }
