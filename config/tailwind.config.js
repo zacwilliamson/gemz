@@ -7,6 +7,7 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
+
   darkMode: 'class',
   theme: {
     extend: {
@@ -15,9 +16,17 @@ module.exports = {
       },
     },
   },
+
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
-  ]
+  ],
+
+  theme: {
+    colors: {
+      'dm-1': '#0c1116',
+      'lm-1': '#ffffff'
+    }
+  }
 }
