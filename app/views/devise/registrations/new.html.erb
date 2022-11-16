@@ -1,32 +1,40 @@
-<div class="m-auto max-w-sm w-full flex flex-col h-full lm-svg dark:dm-svg">
-  <h2 class="text-4xl self-center">join us on <strong>gemz</strong></h2>
+<div class="w-full h-full lm-svg dark:dm-svg">
+  <nav class="p-5 flex justify-end">
+    <span class="text-3xl cursor-pointer mx-2 duration-500">
+      <ion-icon id="dark-mode" name="sunny-outline"></ion-icon>
+    </span>
+  </nav>
 
-  <ion-icon name="diamond-sharp" class="my-4 self-center text-rose-600 text-5xl"></ion-icon>
+  <div class="m-auto max-w-sm w-full flex flex-col">
+    <h2 class="text-4xl self-center duration-500">join us on <strong>gemz</strong></h2>
 
-  <p class="self-center mb-4">Already have an account?<u class="ml-2"><%= link_to "Log in", new_session_path(resource_name) %></u><p>
+    <ion-icon name="diamond-sharp" class="my-4 self-center text-rose-600 text-5xl"></ion-icon>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', :class => 'input-primary dark:input-dark' %>
-    </div>
+    <p class="self-center mb-4 duration-500">Already have an account?<u class="ml-2"><%= link_to "Log in", new_session_path(resource_name) %></u><p>
 
-    <div class="field">
-      <%= f.text_field :username, autofocus: true, placeholder: 'Username', :class => 'input-primary dark:input-dark' %>
-    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', :class => 'input-primary dark:input-dark' %>
+      </div>
 
-    <div class="field">
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', :class => 'input-primary dark:input-dark' %>
-    </div>
+      <div class="field">
+        <%= f.text_field :username, autofocus: true, placeholder: 'Username', :class => 'input-primary dark:input-dark' %>
+      </div>
 
-    <div class="field">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password confirmation', :class => 'input-primary dark:input-dark' %>
-    </div>
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', :class => 'input-primary dark:input-dark' %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up", :class => 'btn-primary font-bold py-2 bg-emerald-600 hover:bg-emerald-500' %>
-    </div>
-  <% end %>
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password confirmation', :class => 'input-primary dark:input-dark' %>
+      </div>
 
-  <%= render "devise/shared/links" %>
-<div>
+      <div class="actions">
+        <%= f.submit "Sign up", :class => 'btn-primary font-bold py-2 bg-emerald-600 hover:bg-emerald-500' %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  <div>
+</div>
