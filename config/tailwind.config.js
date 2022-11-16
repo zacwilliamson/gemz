@@ -24,9 +24,13 @@ module.exports = {
   ],
 
   theme: {
-    colors: {
+    extend: {
+      colors: {
       'dm-1': '#0c1116',
-      'lm-1': '#ffffff'
+      'dm-2': '#141b20',
+      'lm-1': '#f2f5f6',
+      'lm-2': '#ffffff',
+      },
     }
   }
 }
