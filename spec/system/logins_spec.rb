@@ -10,8 +10,7 @@ RSpec.describe 'Logins', type: :system do
   it 'shows homepage (not logged in user)' do
     logout(:user)
     visit root_path
-    expect(page).to have_content('join us on gemz')
-    expect(page).to have_content('Log in')
+    expect(page).to have_content('A social media expirience built with Ruby on Rails')
   end
 
   it 'shows homepage (logged in user)' do
