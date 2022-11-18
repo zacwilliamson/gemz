@@ -1,5 +1,5 @@
 <% if current_user %>
-    <nav class="py-3 px-4 md:flex md:items-center md:justify-between">
+    <nav class="py-3 px-4 md:flex md:flex-col md:border-r-2 md:border-black md:dark:border-white">
         <div class="flex justify-between items-center ">
             <span>
                 <%= link_to root_path do %>
@@ -12,7 +12,7 @@
             </span>
         </div>
 
-         <ul id="list" class="md:flex md:items-center z-[1] md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 md:opacity-100 bg-lm-1 dark:bg-dm-1">
+         <ul id="list" class="md:flex md:flex-col z-[1] md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 md:opacity-100 bg-lm-1 dark:bg-dm-1">
             <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
                 <%= link_to current_user.username, current_user %>
             </li>
