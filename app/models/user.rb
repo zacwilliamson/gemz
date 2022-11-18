@@ -13,11 +13,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook github]
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: true
+  validate :validate_username
 
   after_create :welcome_send
   after_create :create_profile
+
+  attr_writer :login
 
   def welcome_send
     WelcomeMailer.welcome_send(self).deliver
@@ -78,5 +81,25 @@ class User < ApplicationRecord
     user ||= User.create!(provider: auth.provider, uid: auth.uid, username: username,
                           email: auth.info.email, password: Devise.friendly_token[0, 20])
     user
+  end
+
+  def login
+    @login || username || email
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if (login = conditions.delete(:login))
+      where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value',
+                                    { value: login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
   end
 end

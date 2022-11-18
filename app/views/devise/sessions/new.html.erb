@@ -21,7 +21,7 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', :class => 'input-primary dark:input-dark' %>
+          <%= f.text_field :login, placeholder: 'Email or Username', :class => 'input-primary dark:input-dark' %>
         </div>
 
         <div class="field">
