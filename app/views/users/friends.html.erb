@@ -3,7 +3,7 @@
 <ul>
   <% @friends.each do |friend|%>
     <li>
-      <%= gravatar_for(friend, { size: 40 }) %>
+      <img src=<%= profile_img(friend) %> class="rounded-full w-14 h-14">
       <%= link_to friend.username, friend %>
     </li>
   <% end %> 

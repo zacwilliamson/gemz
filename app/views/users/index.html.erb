@@ -7,8 +7,10 @@
 
 <ul>
   <% @users.each do |u| %>
-    <%= gravatar_for(u, { size: 40 }) %>
+    <img src=<%= profile_img(u) %> class="rounded-full w-14 h-14">
+
     <%= link_to u.username, u %>
+    
     <%= render 'friend_form',  :@user => u %>
   <% end %>
 </ul>

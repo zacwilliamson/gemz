@@ -1,5 +1,7 @@
 <div>
-  <%= gravatar_for(post.user, { size: 40 }) %>
+  <img src=<%= profile_img(post.user) %> 
+     class="rounded-full w-14 h-14">
+
   <strong><%= link_to post.user.username, post.user %></strong>
   <%= post.content %>
   <div>

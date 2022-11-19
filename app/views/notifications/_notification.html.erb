@@ -1,5 +1,5 @@
 <li>
-  <%= gravatar_for(notification.sender, { size: 40 }) %>
+  <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14">
   <%= link_to notification.sender.username, notification.sender %>
 
   <%= notification.message %>
