@@ -1,9 +1,9 @@
 <% if current_user %>
     <nav class="py-3 px-4 md:flex md:flex-col md:border-r-2 md:border-black md:dark:border-white">
-        <div class="flex justify-between items-center ">
+        <div class="flex justify-between items-center">
             <span>
                 <%= link_to root_path do %>
-                  <ion-icon name="diamond-sharp" class="text-rose-600 text-5xl"></ion-icon>
+                  <ion-icon name="diamond-sharp" class="text-rose-600 text-4xl md:mx-7 my-3"></ion-icon>
                 <% end %>
             </span>
 
@@ -12,30 +12,39 @@
             </span>
         </div>
 
-         <ul id="list" class="md:flex md:flex-col z-[1] md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 md:opacity-100 bg-lm-1 dark:bg-dm-1">
-            <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
-                <%= link_to current_user.username, current_user %>
+         <ul id="list" class="md:flex flex-col md:ml-4 z-[1] md:static absolute w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 md:opacity-100 bg-lm-1 dark:bg-dm-1">
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="home" class="text-2xl"></ion-icon>
+                <%= link_to 'Home', root_path %>
             </li>
 
-            <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
-                <%= link_to "#{pluralize(current_user.new_notifications.count, 'Notification')}",
-                    notifications_user_path(current_user) %>
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="person-circle" class="text-2xl"></ion-icon>
+                <%= link_to 'Profile', current_user %>
             </li>
 
-            <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="notifications" class="text-2xl"></ion-icon>
+                <%= link_to 'Notifications',notifications_user_path(current_user) %>
+            </li>
+
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="accessibility" class="text-2xl"></ion-icon>
                 <%= link_to "Find friends", users_path %>
             </li>
 
-            <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="cog" class="text-2xl"></ion-icon>
                 <%= link_to "Settings", edit_user_registration_path %>
             </li>
 
-            <li class="mx-4 my-6 md:my-0 text-xl hover:text-rose-600 duration-500">
+            <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <ion-icon name="log-out" class="text-2xl"></ion-icon>
                 <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
             </li>
 
-            <li class="my-6 md:my-0">
-              <span class="text-3xl cursor-pointer mx-2">
+            <li class="mx-1 my-3">
+              <span class="text-2xl cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 w-fit duration-500 rounded-full flex justify-center items-center p-2">
                 <ion-icon id="dark-mode" name="sunny-outline"></ion-icon>
               </span>
             </li>

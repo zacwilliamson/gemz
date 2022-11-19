@@ -6,7 +6,7 @@
 @layer components {
 
   .grid-cols-nav{
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 275px 3fr;
   }
 
   .input-primary {
