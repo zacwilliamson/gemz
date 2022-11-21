@@ -1,5 +1,5 @@
 <%= form_with(model: @post) do |f| %>
-  <%= f.text_area :content, placeholder: "Write your new post here..." %>
+  <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none' %>
   <%= f.submit "Post" %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
