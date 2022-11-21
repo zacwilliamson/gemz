@@ -1,7 +1,11 @@
-<%= form_with(model: @post) do |f| %>
-  <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none' %>
-  <%= f.submit "Post" %>
-  <span class="image">
-    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
-  </span>
-<% end %>
+<div class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-2 py-3 px-4">
+  <%= form_with(model: @post) do |f| %>
+    <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none my-3 h-28 shadow-none outline-none p-0 my-0' %>
+    <div class="flex justify-between">
+      <span class="image">
+          <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+      </span>
+      <%= f.submit "Post", :class => 'bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-md duration-500 hover:cursor-pointer'%>
+    </div>
+  <% end %>
+</div>

@@ -1,5 +1,5 @@
 <div>
-  <h1 class="text-2xl underline">Welcome <%= current_user.username %></h1>
+  <h1 class="text-3xl underline hover:text-rose-500 duration-500">Welcome <%= current_user.username %></h1>
     
   <%= render 'posts/post_form' %>
 
@@ -8,7 +8,6 @@
     <% @feed.each do |post| %>
       <%= render post %>
       <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
-      <hr>
     <% end %>
     <%= paginate @feed %>
   </div>
