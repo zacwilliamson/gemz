@@ -16,7 +16,7 @@
 
   <body class='<%= grid_layout(controller_name, action_name) %>' > 
     <%= render 'layouts/nav' %>
-    <div>
+    <div class="w-full <%= margin(controller_name, action_name) %>">
       <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
