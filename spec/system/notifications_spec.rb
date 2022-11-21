@@ -24,10 +24,10 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     zac.reload
     result_one = zac.recived_request?(zoe) && zac.notifications.last.notifiable_type == 'Friendship'
-    expect(page).to have_content('1 Notification')
+    expect(page).to have_content('Notifications')
     expect(result_one).to be_truthy
 
-    click_on '1'
+    click_on 'Notifications'
     expect(page).to have_content("#{zoe.username} sent you a friend request")
     expect(page).to have_xpath("//input[@value='Accept']")
     expect(page).to have_xpath("//input[@value='Decline']")
@@ -36,7 +36,7 @@ RSpec.describe 'Notifications', type: :system do
     logout(zac)
     login_as(zoe)
     visit '/'
-    click_on '1'
+    click_on 'Notifications'
     zoe.reload
     result_two = zoe.friends_with?(zac)
     expect(result_two).to be_truthy
@@ -54,7 +54,7 @@ RSpec.describe 'Notifications', type: :system do
     request = zac.notifications.last
     zac.reload
     result_one = zac.new_notifications.include?(request)
-    click_on '1'
+    click_on 'Notifications'
     zac.reload
     result_two = zac.old_notifications.include?(request)
     expect(result_one).to be_truthy
@@ -66,7 +66,6 @@ RSpec.describe 'Notifications', type: :system do
     zac.reload
     expect(page).to have_content("#{zac.username}'s Notifications")
     expect(zac.notifications).to be_empty
-    expect(page).to have_content('0 Notifications')
 
     visit "/users/#{zoe.id}/notifications"
     expect(page).to have_content("#{zac.username}'s Notifications")
@@ -89,7 +88,6 @@ RSpec.describe 'Notifications', type: :system do
     logout(zac)
     login_as(zoe)
     visit '/'
-    expect(page).to have_content('1 Notification')
 
     visit "/users/#{zoe.id}/notifications"
     expect(page).to have_content("#{zac.username} liked your post: #{post.content}")
@@ -105,7 +103,6 @@ RSpec.describe 'Notifications', type: :system do
     click_on 'Like'
     result_one = zac.reacted?(post) && zac.notifications.empty?
     expect(result_one).to be_truthy
-    expect(page).to have_content('0 Notifications')
   end
 
   scenario 'a user is notified when their post recives a comment' do

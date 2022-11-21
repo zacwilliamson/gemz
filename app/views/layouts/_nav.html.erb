@@ -24,6 +24,9 @@
             </li>
 
             <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <% unless current_user.new_notifications.count.zero? %>
+                  <span class="text-sm bg-rose-500 w-[9px] h-[9px] rounded-full absolute z-[1] ml-[15px] mb-3 text-rose-500 border border-lm-1 dark:border-dm-1"></span>
+                <% end %>
                 <ion-icon name="notifications" class="text-2xl"></ion-icon>
                 <%= link_to 'Notifications',notifications_user_path(current_user) %>
             </li>
