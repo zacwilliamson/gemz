@@ -17,7 +17,7 @@ RSpec.describe 'Reactions', type: :system do
 
     login_as(zac)
     visit '/'
-    click_on 'Like'
+    find('.like').click
     zac.reload
     result_one = zac.reacted?(post)
 
@@ -29,7 +29,7 @@ RSpec.describe 'Reactions', type: :system do
     post.reload
     result_two = zac.reacted?(post)
 
-    expect(page).to have_xpath("//input[@value='Like']")
+    expect(page).to have_xpath("//ion-icon[@name='heart-outline']")
     expect(result_two).to be_falsey
   end
 
@@ -44,7 +44,7 @@ RSpec.describe 'Reactions', type: :system do
 
     login_as(zac)
     visit "/posts/#{post.id}"
-    click_on 'Like'
+    find('.like').click
     zac.reload
     zoe.reload
     result_one = zac.reacted?(comment)

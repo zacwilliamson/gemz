@@ -80,7 +80,7 @@ RSpec.describe 'Notifications', type: :system do
 
     login_as(zac)
     visit '/'
-    click_on 'Like'
+    find('.like').click
     reaction = zac.reactions.find_by(reactable: post)
     result_one = zoe.notifications.last.notifiable_id == reaction.id
     expect(result_one).to be_truthy
@@ -100,7 +100,7 @@ RSpec.describe 'Notifications', type: :system do
 
     login_as(zac)
     visit '/'
-    click_on 'Like'
+    find('.like').click
     result_one = zac.reacted?(post) && zac.notifications.empty?
     expect(result_one).to be_truthy
   end
