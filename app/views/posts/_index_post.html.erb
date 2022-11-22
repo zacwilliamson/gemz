@@ -1,0 +1,29 @@
+<div class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4">
+    <div class="flex items-center mb-2 justify-between">
+        <div class="flex items-center gap-3 ">
+            <img src=<%= profile_img(post.user) %> 
+                class="rounded-full w-11 h-11">
+
+            <p class="font-bold"><%= link_to post.user.username, post.user %></p>
+        </div>
+
+        <p class="text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(post.created_at) %> ago</p>
+    </div>
+
+    <p class="text-gray-800 dark:text-gray-200"><%= post.content %><p>
+
+    <div>
+        <%= image_tag post.image.variant(:display) if post.image.attached? %>
+    </div>
+
+
+    <% if current_user == post.user %>
+        <%= button_to "Delete", post, method: :delete %>
+        <%= link_to "Edit", edit_post_path(post) %>
+    <% end %>
+
+    <span id=<%= "post_reaction_count#{post.id}" %> ><%= post.reactions.count %></span>
+    <%= render 'reactions/reaction_form',  :@reactable => post %>
+
+    <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
+</div>
