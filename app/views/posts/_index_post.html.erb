@@ -23,13 +23,20 @@
                 <span><%= render 'reactions/reaction_form',  :@reactable => post %></span>
             </div>
 
-            <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
+            <%= link_to post_path(post) do %>
+            <span><%= post.comments.count %></span>
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+            <% end %>
         </div>
 
          <div class="flex gap-x-3">
             <% if current_user == post.user %>
-                <%= link_to "Edit", edit_post_path(post) %>
-                <%= button_to "Delete", post, method: :delete %>
+                <%= link_to edit_post_path(post) do %>
+                  <ion-icon class="edit" name="create-outline"></ion-icon>
+                <% end %>
+                <%= button_to post, method: :delete do %>
+                  <ion-icon class="trash" name="trash-outline"></ion-icon>
+                <% end %>
             <% end %>
         </div>
     </div>

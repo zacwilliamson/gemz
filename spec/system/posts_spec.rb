@@ -23,7 +23,7 @@ RSpec.describe 'Posts', type: :system do
     expect(page).to have_content('Your post is live')
     expect(result_one).to be_truthy
 
-    click_on 'Edit'
+    find('.edit').click
     fill_in 'Write your new post here...', with: 'Tester poster'
     click_on 'Post'
     zac.reload

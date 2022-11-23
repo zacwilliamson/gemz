@@ -10,8 +10,16 @@
 
 
   <% if current_user == post.user %>
-      <%= button_to "Delete", post, method: :delete %>
-      <%= link_to "Edit", edit_post_path(post) %>
+      <div class="flex gap-x-3">
+            <% if current_user == post.user %>
+                <%= link_to edit_post_path(post) do %>
+                  <ion-icon class="edit" name="create-outline"></ion-icon>
+                <% end %>
+                <%= button_to post, method: :delete do %>
+                  <ion-icon class="trash" name="trash-outline"></ion-icon>
+                <% end %>
+            <% end %>
+        </div>
   <% end %>
 
   <br>
