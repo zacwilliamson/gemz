@@ -20,15 +20,13 @@ RSpec.describe 'Reactions', type: :system do
     find('.like').click
     zac.reload
     result_one = zac.reacted?(post)
-
-    expect(page).to have_xpath("//input[@value='Unlike']")
+    expect(page).to have_xpath("//ion-icon[@name='heart']")
     expect(result_one).to be_truthy
 
-    click_on 'Unlike'
+    find('.unlike').click
     zac.reload
     post.reload
     result_two = zac.reacted?(post)
-
     expect(page).to have_xpath("//ion-icon[@name='heart-outline']")
     expect(result_two).to be_falsey
   end

@@ -1,4 +1,6 @@
 <%= form_with(model: current_user.reactions.find_by(reactable: @reactable),
               html: { method: :delete }) do |f| %>
-  <%= f.submit 'Unlike' %>
+  <%= button_tag(type: "submit", class: 'unlike text-xl text-rose-500') do %>
+      <ion-icon name="heart"></ion-icon>
+    <% end %> 
   <% end %>
