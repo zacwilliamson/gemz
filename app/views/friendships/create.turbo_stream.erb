@@ -5,3 +5,7 @@
     <%= render "users/unfriend", :user => @user  %>
   <% end %>
 <% end %>
+
+<%= turbo_stream.update "message#{@user.id}" do %>
+  <%= @friendship.message %>
+<% end %>

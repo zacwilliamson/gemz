@@ -1,8 +1,13 @@
 <li>
-  <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14">
-  <%= link_to notification.sender.username, notification.sender %>
+  <div>
+    <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14">
 
-  <%= notification.message %>
+    <%= link_to notification.sender.username, notification.sender %>
+    
+    <span id=<%= "message#{notification.sender.id}" %> >
+      <%= notification.message %>
+    </span>
+  </div>
 
   <% if notification.friend_request? %>
     <%= render 'friend_form',  :@user => notification.sender %>
