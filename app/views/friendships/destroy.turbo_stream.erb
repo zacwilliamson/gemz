@@ -1,11 +1,11 @@
 <%= turbo_stream.update "friend_form#{@friend.id}" do %>
-  <% if params[:page] == "users#notifications" %>
-    <%= nil %>
-  <% else %>
-    <%= render "users/add_friend", :user => @friend %>
-  <% end %>
+  <%= render "users/add_friend", :user => @friend %>
 <% end %>
 
 <%= turbo_stream.update "friend_count#{@friend.id}" do %>
   <%= link_to pluralize(@friend.active_friends.count, 'friend'), friends_user_path(@friend) %>
+<% end %>
+
+<%= turbo_stream.update "friendship#{@friend.id}" do %>
+  <%= nil %>
 <% end %>
