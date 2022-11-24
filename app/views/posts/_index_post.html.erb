@@ -7,7 +7,7 @@
             <p class="font-bold"><%= link_to post.user.username, post.user %></p>
         </div>
 
-        <p class="text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(post.created_at) %> ago</p>
+        <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(post.created_at) %> ago</p>
     </div>
 
     <p class="text-gray-800 dark:text-gray-200 my-3"><%= post.content %><p>
