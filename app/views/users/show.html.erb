@@ -22,9 +22,7 @@
 
 <% unless @posts.empty? %>
   <% @posts.each do |post| %>
-    <%= render post %>
-    <%= link_to "#{pluralize(post.comments.count, 'Comment')}", post_path(post) %>
-    <hr>
+    <%= render 'posts/index_post', :post => post %>
   <% end %>
   <%= paginate @posts %>
 <% end %>
