@@ -1,4 +1,5 @@
 <%= form_with(model: current_user.friendships.build) do |f| %>
   <%= hidden_field_tag :friend_id, user.id %>
+  <%= hidden_field_tag :page, "#{controller_name}##{action_name}" %>
   <%= f.submit add_friend_btn(current_user, user) %>
 <% end %>
