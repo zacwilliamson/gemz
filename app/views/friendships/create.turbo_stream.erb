@@ -7,5 +7,7 @@
 <% end %>
 
 <%= turbo_stream.update "message#{@user.id}" do %>
-  <%= @friendship.message %>
+  <% if current_user.friends_with?(@user) %>
+    <%= @user.friendships.find_by(friend: current_user).message %>
+  <% end %>
 <% end %>
