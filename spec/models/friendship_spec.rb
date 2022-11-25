@@ -18,4 +18,31 @@ RSpec.describe Friendship, type: :model do
     friendship.friend_id = nil
     expect(friendship).not_to be_valid
   end
+
+  describe '#initial_request?' do
+    context 'when the users are friends with eachother' do
+      before do
+        zac.add_friend(zoe)
+        zoe.add_friend(zac)
+      end
+      it 'returns true if first request was sent' do
+        request = zac.friendships.find_by(friend: zoe)
+        result = request.initial_request?
+        expect(result).to eql(true)
+      end
+      it 'returns false if second reqeust was sent' do
+        request = zoe.friendships.find_by(friend: zac)
+        result = request.initial_request?
+        expect(result).to eql(false)
+      end
+    end
+    context 'it returns nil when' do
+      it 'one of them sent a pending request' do
+        zac.add_friend(zoe)
+        request = zac.friendships.find_by(friend: zoe)
+        result = request.initial_request?
+        expect(result).to eql(nil)
+      end
+    end
+  end
 end
