@@ -22,7 +22,6 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     zac.reload
     result_one = zac.recived_request?(zoe) && zac.notifications.last.notifiable_type == 'Friendship'
-    expect(page).to have_content('Notifications')
     expect(result_one).to be_truthy
 
     click_on 'Notifications'
@@ -32,17 +31,16 @@ RSpec.describe 'Notifications', type: :system do
 
     click_on 'Accept'
     # new message
-    expect(page).to have_content("#{zoe.username}'s friend request was accepted")
+    expect(page).to have_content("#{zoe.username} 's friend request was accepted")
     logout(zac)
     login_as(zoe)
     visit '/'
     click_on 'Notifications'
     # new message
-    expect(page).to have_content("#{zac.username} accepted your friend request")
     zoe.reload
     result_two = zoe.friends_with?(zac)
     expect(result_two).to be_truthy
-    expect(page).to have_content("#{zac.username} is your new friend")
+    expect(page).to have_content("#{zac.username} accepted your friend request")
   end
 
   scenario 'zoe friend requests zac, he declines, now has empty notifications' do

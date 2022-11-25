@@ -10,9 +10,9 @@ class Friendship < ApplicationRecord
     if friend.recived_request?(user)
       'sent you a friend request'
     elsif initial_request?
-      'accepted your friend request'
-    else
       "'s friend request was accepted"
+    else
+      'accepted your friend request'
     end
   end
 
