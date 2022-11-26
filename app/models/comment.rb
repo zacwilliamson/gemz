@@ -8,6 +8,6 @@ class Comment < ApplicationRecord
   validates :content, presence: true, length: { maximum: 250 }
 
   def message
-    "commented on your post: #{content.truncate(50)}"
+    'commented on your post'
   end
 end

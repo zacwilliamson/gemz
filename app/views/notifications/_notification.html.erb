@@ -1,6 +1,6 @@
-<li id=<%= "#{notification.notifiable_type.downcase}#{notification.sender.id}"%> class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4" >
-  <div class='flex justify-between items-center'>
-    <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end mb-2"><%= time_ago_in_words(notification.created_at) %> ago</p>
+<li id=<%= "#{notification.notifiable_type.downcase}#{notification.sender.id}"%> class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700" >
+  <div class='flex justify-between items-center mb-2'>
+    <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(notification.created_at) %> ago</p>
 
     <ion-icon class=<%= "#{notification_icon[notification.notifiable_type.to_sym][:class]}"%>
               name=<%= "#{notification_icon[notification.notifiable_type.to_sym][:icon]}"%>>
@@ -18,6 +18,14 @@
       </span>
     </div>
   </div>
+  <% unless notification.notifiable_type == 'Friendship' %>
+    <div>
+      <%= link_to post_link(notification) do %>
+        <hr class="h-[1px] border-none bg-gray-200 dark:bg-gray-800 my-[5px]">
+        <p class='text-gray-600 dark:text-gray-400 ml-[68px]'><%= notification_content(notification) %></p>
+      <% end %>
+    </div>
+  <% end %>
 
   <% if notification.friend_request? %>
     <%= render 'friend_form',  :@user => notification.sender %>

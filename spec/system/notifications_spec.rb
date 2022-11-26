@@ -66,7 +66,7 @@ RSpec.describe 'Notifications', type: :system do
     expect(zac.notifications).to be_empty
 
     visit "/users/#{zoe.id}/notifications"
-    expect(page).to have_content("Notifications")
+    expect(page).to have_content('Notifications')
   end
 
   scenario 'a user is notified when their post is liked' do
@@ -88,7 +88,7 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
 
     visit "/users/#{zoe.id}/notifications"
-    expect(page).to have_content("#{zac.username} liked your post: #{post.content}")
+    expect(page).to have_content("#{zac.username} liked your post")
   end
 
   scenario 'a user is not notified when they like thier own posts' do
@@ -121,7 +121,7 @@ RSpec.describe 'Notifications', type: :system do
     logout(zac)
     login_as(zoe)
     visit "/users/#{zoe.id}/notifications"
-    expect(page).to have_content("#{zac.username} commented on your post: Here is your comment")
+    expect(page).to have_content("#{zac.username} commented on your post")
   end
 
   scenario 'a user is not notified when they comment their own posts' do

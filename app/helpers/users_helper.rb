@@ -37,11 +37,29 @@ module UsersHelper
     end
   end
 
+  # notification methods
+
+  def post_link(notification)
+    if notification.notifiable_type == 'Reaction'
+      notification.notifiable.reactable
+    elsif notification.notifiable_type == 'Comment'
+      notification.notifiable.post
+    end
+  end
+
+  def notification_content(notification)
+    if notification.notifiable_type == 'Reaction'
+      notification.notifiable.reactable.content.truncate(70)
+    elsif notification.notifiable_type == 'Comment'
+      notification.notifiable.content.truncate(70)
+    end
+  end
+
   def notification_icon
     {
       Friendship: {
         icon: 'people',
-        class: 'text-sky-500'
+        class: 'text-blue-500'
       },
       Reaction: {
         icon: 'heart',

@@ -6,6 +6,6 @@ class Reaction < ApplicationRecord
   validates :user_id, uniqueness: { scope: %i[reactable_id reactable_type category] }
 
   def message
-    "liked your post: #{reactable.content.truncate(50)}"
+    "liked your post"
   end
 end
