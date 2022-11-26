@@ -2,7 +2,7 @@
   <%= form_with(model: @post) do |f| %>
     <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none my-3 h-28 shadow-none outline-none p-0 my-0' %>
     <div class="flex justify-between items-center">
-      <span class="image z-[0]">
+      <span class="image z-[0] mt-4">
           <%= f.label :image do %>
             <ion-icon name="image-outline" class="text-3xl hover:cursor-pointer"></ion-icon>
           <% end %>

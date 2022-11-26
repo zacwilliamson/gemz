@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700">
+<div class=" flex flex-col bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700">
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-3 ">
             <img src=<%= profile_img(post.user) %> 
@@ -12,7 +12,7 @@
 
     <p class="text-gray-800 dark:text-gray-200 my-3"><%= post.content %><p>
 
-    <div>
+    <div class='self-center mb-1'>
         <%= image_tag post.image.variant(:display) if post.image.attached? %>
     </div>
 
