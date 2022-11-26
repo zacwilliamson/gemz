@@ -4,8 +4,8 @@ class FriendshipsController < ApplicationController
   def create
     @user = User.find(params[:friend_id])
     current_user.add_friend(@user)
-    @friendship = current_user.friendships.find_by(friend: @user)
-    notify(@user, @friendship)
+    friendship = current_user.friendships.find_by(friend: @user)
+    notify(@user, friendship)
     respond_to do |format|
       format.html { redirect_to request.referrer }
       format.turbo_stream

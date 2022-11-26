@@ -30,13 +30,11 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_xpath("//input[@value='Decline']")
 
     click_on 'Accept'
-    # new message
     expect(page).to have_content("#{zoe.username} 's friend request was accepted")
     logout(zac)
     login_as(zoe)
     visit '/'
     click_on 'Notifications'
-    # new message
     zoe.reload
     result_two = zoe.friends_with?(zac)
     expect(result_two).to be_truthy
