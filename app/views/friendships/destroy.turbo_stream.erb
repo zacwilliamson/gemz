@@ -6,6 +6,4 @@
   <%= link_to pluralize(@friend.active_friends.count, 'friend'), friends_user_path(@friend) %>
 <% end %>
 
-<%= turbo_stream.update "friendship#{@friend.id}" do %>
-  <%= nil %>
-<% end %>
+<%= turbo_stream.remove "friendship#{@friend.id}" %>
