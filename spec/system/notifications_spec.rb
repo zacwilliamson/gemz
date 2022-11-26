@@ -62,11 +62,11 @@ RSpec.describe 'Notifications', type: :system do
 
     click_on 'Decline'
     zac.reload
-    expect(page).to have_content("#{zac.username}'s Notifications")
+    expect(page).to have_content('Notifications')
     expect(zac.notifications).to be_empty
 
     visit "/users/#{zoe.id}/notifications"
-    expect(page).to have_content("#{zac.username}'s Notifications")
+    expect(page).to have_content("Notifications")
   end
 
   scenario 'a user is notified when their post is liked' do

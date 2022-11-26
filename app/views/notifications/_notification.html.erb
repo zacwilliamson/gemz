@@ -1,12 +1,22 @@
-<li id=<%= "#{notification.notifiable_type.downcase}#{notification.sender.id}" %> >
-  <div>
-    <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14">
+<li id=<%= "#{notification.notifiable_type.downcase}#{notification.sender.id}"%> class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4" >
+  <div class='flex justify-between items-center'>
+    <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end mb-2"><%= time_ago_in_words(notification.created_at) %> ago</p>
 
-    <%= link_to notification.sender.username, notification.sender %>
-    
-    <span id=<%= "message#{notification.sender.id}" %> >
-      <%= notification.message %>
-    </span>
+    <ion-icon class=<%= "#{notification_icon[notification.notifiable_type.to_sym][:class]}"%>
+              name=<%= "#{notification_icon[notification.notifiable_type.to_sym][:icon]}"%>>
+    </ion-icon>
+  </div>
+
+  <div class='flex items-center'>
+    <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14 mr-3">
+
+    <div>
+      <span class="font-bold"><%= link_to notification.sender.username, notification.sender %></span>
+      
+      <span id=<%= "message#{notification.sender.id}" %> >
+        <%= notification.message %>
+      </span>
+    </div>
   </div>
 
   <% if notification.friend_request? %>

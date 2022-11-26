@@ -36,4 +36,21 @@ module UsersHelper
       'Unfriend'
     end
   end
+
+  def notification_icon
+    {
+      Friendship: {
+        icon: 'people',
+        class: 'text-sky-500'
+      },
+      Reaction: {
+        icon: 'heart',
+        class: 'text-rose-500'
+      },
+      Comment: {
+        icon: 'chatbubbles',
+        class: 'text-green-500'
+      }
+    }
+  end
 end
