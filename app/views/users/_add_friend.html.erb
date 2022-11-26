@@ -1,5 +1,7 @@
-<%= form_with(model: current_user.friendships.build) do |f| %>
-  <%= hidden_field_tag :friend_id, user.id %>
-  <%= hidden_field_tag :page, "#{controller_name}##{action_name}" %>
-  <%= f.submit add_friend_btn(current_user, user) %>
-<% end %>
+<div class="bg-emerald-500 hover:bg-emerald-400 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white w-fit px-2 py-1 rounded-lg duration-500">
+  <%= form_with(model: current_user.friendships.build) do |f| %>
+    <%= hidden_field_tag :friend_id, user.id %>
+    <%= hidden_field_tag :page, "#{controller_name}##{action_name}" %>
+    <%= f.submit add_friend_btn(current_user, user), class: 'hover:cursor-pointer' %>
+  <% end %>
+</div>

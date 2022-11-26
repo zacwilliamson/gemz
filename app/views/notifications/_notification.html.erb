@@ -7,17 +7,26 @@
     </ion-icon>
   </div>
 
-  <div class='flex items-center'>
-    <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14 mr-3">
+  <div class='flex flex-col md:flex-row md:items-center justify-between'>
+    <div class='flex items-center'>
+      <img src=<%= profile_img(notification.sender) %> class="rounded-full w-14 h-14 mr-3">
 
-    <div>
-      <span class="font-bold"><%= link_to notification.sender.username, notification.sender %></span>
-      
-      <span id=<%= "message#{notification.sender.id}" %> >
-        <%= notification.message %>
-      </span>
+      <div>
+        <span class="font-bold"><%= link_to notification.sender.username, notification.sender %></span>
+        
+        <span id=<%= "message#{notification.sender.id}" %> >
+          <%= notification.message %>
+        </span>
+      </div>
     </div>
+
+    <% if notification.friend_request? %>
+      <div class="self-end md:self-center mb-1 md:mb-0">
+        <%= render 'friend_form',  :@user => notification.sender %>
+      </div>
+    <% end %>
   </div>
+  
   <% unless notification.notifiable_type == 'Friendship' %>
     <div>
       <%= link_to post_link(notification) do %>
@@ -25,9 +34,5 @@
         <p class='text-gray-600 dark:text-gray-400 ml-[68px]'><%= notification_content(notification) %></p>
       <% end %>
     </div>
-  <% end %>
-
-  <% if notification.friend_request? %>
-    <%= render 'friend_form',  :@user => notification.sender %>
   <% end %>
 </li>

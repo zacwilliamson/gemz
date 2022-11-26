@@ -1,8 +1,8 @@
 <% unless current_user == @user %>
-  <div id=<%= "friend_form#{@user.id}" %> >
+  <div class = 'flex text-sm gap-x-2' id=<%= "friend_form#{@user.id}" %> >
   <% if current_user.recived_request?(@user) %>
-    <%= render 'unfriend', :user => @user %>
     <%= render 'add_friend', :user => @user %>
+    <%= render 'unfriend', :user => @user %>
   <% elsif current_user.friends_with?(@user) || current_user.pending_friends.include?(@user) %>
     <%= render 'unfriend', :user => @user %>
   <% else %>
