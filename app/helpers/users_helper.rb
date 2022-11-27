@@ -31,7 +31,7 @@ module UsersHelper
     if current_user.recived_request?(user)
       'bg-red-600 hover:bg-red-500 dark:bg-red-700 dark:hover:bg-red-600 text-white w-fit px-2 py-1 rounded-lg duration-500'
     else
-      'bg-gray-600 hover:bg-gray-500 dark:bg-red-700 dark:hover:bg-red-600 text-white w-fit px-2 py-1 rounded-lg duration-500'
+      'bg-gray-600 hover:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 text-white w-fit px-2 py-1 rounded-lg duration-500'
     end
   end
 

@@ -34,7 +34,7 @@ RSpec.describe 'Friendships', type: :system do
     zac.reload
     result = zac.friends_with?(zoe)
     expect(page).to have_content(zoe.username)
-    expect(page).to have_xpath("//input[@value='Unfriend']")
+    expect(page).to have_xpath("//input[@value='Friends']")
     expect(result).to be_truthy
   end
 

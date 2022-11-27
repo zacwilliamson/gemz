@@ -51,7 +51,7 @@ RSpec.describe 'Posts', type: :system do
     expect(page).to have_content(zoe.username)
 
     visit "/users/#{zoe.id}"
-    click_on 'Unfriend'
+    click_on 'Friends'
     visit '/'
     expect(page).to_not have_content('Yee yee')
     expect(page).to have_content('Yee haw')
