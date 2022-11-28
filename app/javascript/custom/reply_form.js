@@ -4,14 +4,18 @@ document.addEventListener("turbo:load", function() {
 
     reply_btn.forEach((btn) => {
         btn.addEventListener('click', function(){
-
-            reply_btn.forEach((other_btn) => {
+            if(btn.name == 'arrow-undo'){
+                reply_btn.forEach((other_btn) => {
                 other_btn.nextElementSibling.classList.add('hidden')
                 other_btn.name = 'arrow-undo'
-            })
+                })
 
-            btn.name = 'close-circle'
-            btn.nextElementSibling.classList.remove('hidden')
+                btn.name = 'close-circle'
+                btn.nextElementSibling.classList.remove('hidden')
+            } else {
+                btn.name = 'arrow-undo'
+                btn.nextElementSibling.classList.add('hidden')
+            }
         })
     })
 });
