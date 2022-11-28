@@ -10,8 +10,9 @@
 
   <%= time_ago_in_words(comment.created_at) %> ago
 
-  <a href='#' class='underline'>reply</a>
-  <div class='reply-form'>
+  <ion-icon class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
+
+  <div class='reply-form hidden'>
     <%= render 'comments/comment_form', :parent => comment %>
   </div>
   
@@ -19,4 +20,3 @@
     <%= render comment.comments %>
   </div>
 <% end %>
-  <br>
