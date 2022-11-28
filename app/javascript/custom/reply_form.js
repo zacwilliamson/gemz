@@ -1,6 +1,5 @@
 document.addEventListener("turbo:load", function() {
     let reply_btn = document.querySelectorAll('.reply-btn');
-    // let forms = document.querySelectorAll('.reply-form');
 
     reply_btn.forEach((btn) => {
         btn.addEventListener('click', function(){

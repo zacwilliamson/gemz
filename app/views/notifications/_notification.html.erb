@@ -2,8 +2,8 @@
   <div class='flex justify-between items-center mb-2'>
     <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(notification.created_at) %> ago</p>
 
-    <ion-icon class=<%= "#{notification_icon[notification.notifiable_type.to_sym][:class]}"%>
-              name=<%= "#{notification_icon[notification.notifiable_type.to_sym][:icon]}"%>>
+    <ion-icon class=<%= "#{notification_icon(notification)[notification.notifiable_type.to_sym][:class]}"%>
+              name=<%= "#{notification_icon(notification)[notification.notifiable_type.to_sym][:icon]}"%>>
     </ion-icon>
   </div>
 

@@ -28,5 +28,5 @@ class CommentsController < ApplicationController
     return if current_user == user
 
     user.notifications.create(notifiable: comment)
-  end 
+  end
 end

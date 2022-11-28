@@ -45,7 +45,7 @@ module UsersHelper
     end
   end
 
-  # notification methods
+  # notification methods (sorry I know these are ugly)
 
   def post_link(notification)
     if notification.notifiable_type == 'Reaction'
@@ -57,26 +57,36 @@ module UsersHelper
 
   def notification_content(notification)
     if notification.notifiable_type == 'Reaction'
-      notification.notifiable.reactable.content.truncate(70)
+      notification.notifiable.reactable.content.truncate(85)
     elsif notification.notifiable_type == 'Comment'
-      notification.notifiable.content.truncate(70)
+      notification.notifiable.content.truncate(85)
     end
   end
 
-  def notification_icon
-    {
-      Friendship: {
-        icon: 'people',
-        class: 'text-blue-500'
-      },
-      Reaction: {
-        icon: 'heart',
-        class: 'text-rose-500'
-      },
-      Comment: {
-        icon: 'chatbubbles',
-        class: 'text-green-500'
+  def notification_icon(notification)
+    if notification.notifiable_type == 'Comment' && !notification.notifiable.parent.nil?
+      {
+        Comment: {
+          icon: 'arrow-undo',
+          class: 'text-purple-500'
+        }
       }
-    }
+    else
+      {
+        Friendship: {
+          icon: 'people',
+          class: 'text-blue-500'
+        },
+        Reaction: {
+          icon: 'heart',
+          class: 'text-rose-500'
+        },
+
+        Comment: {
+          icon: 'chatbubbles',
+          class: 'text-green-500'
+        }
+      }
+    end
   end
 end

@@ -10,6 +10,10 @@ class Comment < ApplicationRecord
   validates :content, presence: true, length: { maximum: 250 }
 
   def message
-    'commented on your post'
+    if parent.nil?
+      'commented on your post'
+    else
+      "replied to your comment: #{parent.content.truncate(85)}"
+    end
   end
 end
