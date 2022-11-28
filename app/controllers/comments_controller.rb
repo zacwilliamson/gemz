@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :user_id)
+    params.require(:comment).permit(:content, :user_id, :parent_id)
   end
 
   def set_post
@@ -28,5 +28,5 @@ class CommentsController < ApplicationController
     return if current_user == user
 
     user.notifications.create(notifiable: comment)
-  end
+  end 
 end

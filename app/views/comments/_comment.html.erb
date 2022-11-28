@@ -1,17 +1,22 @@
 <% if comment.persisted? %>
   <%= gravatar_for(comment.user, { size: 40 }) %>
-  <strong><%= link_to comment.user.username, comment.user %></strong>
-    <%= comment.content %>
-
-    <br>
+  <p><strong><%= link_to comment.user.username, comment.user %></strong>
+    <%= comment.content %></p>
 
   <span id=<%= "comment_reaction_count#{comment.id}" %> ><%= comment.reactions.count %></span>
   <%= render 'reactions/reaction_form',  :@reactable => comment %>
 
   <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete if current_user == comment.user %>
 
-  <br>
-
   <%= time_ago_in_words(comment.created_at) %> ago
+
+  <a href='#' class='underline'>reply</a>
+  <div class='reply-form'>
+    <%= render 'comments/comment_form', :parent => comment %>
+  </div>
+  
+  <div class='pl-5'>
+    <%= render comment.comments %>
+  </div>
 <% end %>
   <br>
