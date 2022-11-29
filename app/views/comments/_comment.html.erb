@@ -1,16 +1,35 @@
 <% if comment.persisted? %>
-  <%= gravatar_for(comment.user, { size: 40 }) %>
-  <p><strong><%= link_to comment.user.username, comment.user %></strong>
-    <%= comment.content %></p>
+  <div class='flex items-center justify-between'>
+    <div class="flex items-center gap-3">
+      <img src=<%= profile_img(comment.user) %> 
+            class="rounded-full w-10 h-10">
 
-  <span id=<%= "comment_reaction_count#{comment.id}" %> ><%= comment.reactions.count %></span>
-  <%= render 'reactions/reaction_form',  :@reactable => comment %>
+      <p class='font-bold'><%= link_to comment.user.username, comment.user %></p>
+    </div>
 
-  <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete if current_user == comment.user %>
+    <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(comment.created_at) %> ago</p>
+  </div>
 
-  <%= time_ago_in_words(comment.created_at) %> ago
+  <p class='my-2'><%= comment.content%></p>
 
-  <ion-icon id=<%="reply-btn#{comment.id}"%>  class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
+  <div class="flex justify-between items-center">
+        <div class="flex gap-x-3">
+            <div class="flex justify-center gap-x-1">
+                <span id=<%= "comment_reaction_count#{comment.id}" %> ><%= comment.reactions.count %></span>
+                <%= render 'reactions/reaction_form',  :@reactable => comment %>
+            </div>
+        </div>
+
+         <div class="flex gap-x-3">
+            <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
+
+            <% if current_user == comment.user %>
+                <%= button_to  post_comment_path(@post, comment), method: :delete do %>
+                  <ion-icon id=<%="trash#{comment.id}"%> name="trash-outline"></ion-icon>
+                <% end %>
+            <% end %>
+         </div>
+  </div>
 
   <div class='reply-form hidden'>
     <%= render 'comments/comment_form', :parent => comment %>
