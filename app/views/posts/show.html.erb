@@ -1,7 +1,6 @@
 <%= render @post %>
 
-<h2>Add a comment:</h2>
+<h2 class='text-3xl duration-500 font-bold my-4'><%= pluralize(@post.comments.count, 'Comment') %></h2>
 <%= render 'comments/comment_form', :parent => nil %>
 
-<h2><%= pluralize(@post.comments.count, 'Comment') %></h2>
 <%= render @post.comments.where(parent_id: nil) %>
