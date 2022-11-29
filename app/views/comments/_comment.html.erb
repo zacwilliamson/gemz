@@ -1,5 +1,18 @@
 <% if comment.persisted? %>
-  <div class=<%="py-4"%> >
+  <div class=<%="pt-3"%> >
+
+    <% unless comment.parent.nil? %>
+      <div class='block md:hidden flex items-center gap-1 text-gray-600 dark:text-gray-400 mb-3 ml-[9.5px] text-xs'>
+        <div class="flex items-center gap-2">
+          <img src=<%= profile_img(comment.parent.user) %> 
+                class="rounded-full w-5 h-5">
+
+          <p class='font-bold'><%= "#{comment.parent.user.username}:"  %></p>
+        </div>
+        <p><%= comment.parent.content %><p>
+      </div>
+    <% end %>
+
     <div class='flex items-center justify-between'>
       <div class="flex items-center gap-3">
         <img src=<%= profile_img(comment.user) %> 
@@ -38,7 +51,7 @@
 
     <hr class="h-[1px] border-none bg-gray-300 dark:bg-gray-700 my-[0px]">
     
-    <div class='pl-6'>
+    <div class='pl-0 md:pl-7'>
       <%= render comment.comments %>
     </div>
   </div>
