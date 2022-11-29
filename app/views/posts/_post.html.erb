@@ -1,34 +1,39 @@
 <div>
-  <img src=<%= profile_img(post.user) %> 
-     class="rounded-full w-14 h-14">
+  <div class=" flex flex-col bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3 ">
+        <img src=<%= profile_img(post.user) %> 
+          class="rounded-full w-14 h-14">
 
-  <strong><%= link_to post.user.username, post.user %></strong>
-  <%= post.content %>
-  <div>
-    <%= image_tag post.image.variant(:display) if post.image.attached? %>
-  <div>
+        <strong><%= link_to post.user.username, post.user %></strong>
+      </div>
+      <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(post.created_at) %> ago</p>
+    </div>
 
+   <p class="text-gray-800 dark:text-gray-200 my-3"><%= post.content %><p>
 
-  <% if current_user == post.user %>
-      <div class="flex gap-x-3">
+    <div class='self-center mb-2'>
+      <%= image_tag post.image.variant(:display), class: 'rounded-md' if post.image.attached? %>
+    </div>
+
+    <div class="flex justify-between items-center">
+        <div class="flex gap-x-3">
+            <div class="flex justify-center gap-x-1">
+                <span id=<%= "post_reaction_count#{post.id}" %> ><%= post.reactions.count %></span>
+                <span><%= render 'reactions/reaction_form',  :@reactable => post %></span>
+            </div>
+        </div>
+
+         <div class="flex gap-x-3">
             <% if current_user == post.user %>
                 <%= link_to edit_post_path(post) do %>
-                  <ion-icon id=<%="edit#{post.id}"%> name="create-outline"></ion-icon>
+                  <ion-icon id=<%="edit#{post.id}"%> class="edit" name="create-outline"></ion-icon>
                 <% end %>
                 <%= button_to post, method: :delete do %>
-                  <ion-icon id=<%="trash#{post.id}"%> name="trash-outline"></ion-icon>
+                  <ion-icon id=<%="trash#{post.id}"%> class="trash" name="trash-outline"></ion-icon>
                 <% end %>
             <% end %>
-        </div>
-  <% end %>
-
-  <br>
-
-  <span id=<%= "post_reaction_count#{post.id}" %> ><%= post.reactions.count %></span>
-  <%= render 'reactions/reaction_form',  :@reactable => post %>
-
-  <br>
-
-  <%= time_ago_in_words(post.created_at) %> ago
-
+      </div>
+    </div>
+  </div>
 </div>

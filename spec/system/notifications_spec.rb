@@ -112,7 +112,7 @@ RSpec.describe 'Notifications', type: :system do
 
     login_as(zac)
     visit "/posts/#{post.id}"
-    fill_in 'Comment here...', with: 'Here is your comment'
+    fill_in 'Write a comment here:', with: 'Here is your comment'
     click_on 'Post'
     result_one = post.comments.last.content == 'Here is your comment'
     expect(page).to have_content('Here is your comment')
@@ -131,7 +131,7 @@ RSpec.describe 'Notifications', type: :system do
 
     login_as(zac)
     visit "/posts/#{post.id}"
-    fill_in 'Comment here...', with: 'My comment on my post'
+    fill_in 'Write a comment here:', with: 'My comment on my post'
     click_on 'Post'
     zac.reload
     result_one = zac.notifications.empty?
@@ -150,7 +150,7 @@ RSpec.describe 'Notifications', type: :system do
     visit "/posts/#{post.id}"
     find("#reply-btn#{comment.id}").click
     within '.reply-form' do
-      fill_in 'Comment here...', with: 'here is the reply'
+      fill_in 'Write a comment here:', with: 'here is the reply'
       click_on 'Post'
     end
 
@@ -171,7 +171,7 @@ RSpec.describe 'Notifications', type: :system do
     visit "/posts/#{post.id}"
     find("#reply-btn#{comment.id}").click
     within '.reply-form' do
-      fill_in 'Comment here...', with: 'here is a reply from me'
+      fill_in 'Write a comment here:', with: 'here is a reply from me'
       click_on 'Post'
     end
 

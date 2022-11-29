@@ -18,7 +18,7 @@ RSpec.describe 'Comments', type: :system do
 
     login_as(zac)
     visit "/posts/#{post.id}"
-    fill_in 'Comment here...', with: 'I am here'
+    fill_in 'Write a comment here:', with: 'I am here'
     click_on 'Post'
     zac.reload
     zoe.reload
