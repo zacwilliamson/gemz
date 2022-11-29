@@ -45,7 +45,9 @@ module UsersHelper
     end
   end
 
-  # notification methods (sorry I know these are ugly)
+  # notification methods (sorry I know these are ugly),
+  # rubocop:disable Style/CaseLikeIf
+  # rubocop:disable Metrics/MethodLength
 
   def post_link(notification)
     if notification.notifiable_type == 'Reaction'
@@ -89,4 +91,6 @@ module UsersHelper
       }
     end
   end
+  # rubocop:enable Style/CaseLikeIf
+  # rubocop:enable Metrics/MethodLength
 end
