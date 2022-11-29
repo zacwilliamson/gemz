@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
   end
 
   def notify(user, comment)
+    user = comment.parent.user unless comment.parent.nil?
     return if current_user == user
 
     user.notifications.create(notifiable: comment)

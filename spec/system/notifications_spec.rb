@@ -139,7 +139,7 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_content('My comment on my post')
   end
 
-  scenario 'a user is notified when their comment recives a reply' do
+  scenario 'a user is notified when their comment recives a reply on someone elses post' do
     # set up
     zoe.posts.create(content: 'Simple test post')
     post = zoe.posts.last
@@ -156,8 +156,29 @@ RSpec.describe 'Notifications', type: :system do
 
     zac.reload
     result_one = zac.notifications.empty?
-    expect(result_one).to be_truthy
+    expect(result_one).to be_falsey
     expect(page).to have_content('here is the reply')
+  end
+
+  scenario 'a user is not notified when they comment on their own post' do
+    # set up
+    zoe.posts.create(content: 'Another test post')
+    post = zoe.posts.last
+    zoe.comments.create(post: post, content: 'here is a comment from me')
+    comment = zoe.comments.last
+
+    login_as(zoe)
+    visit "/posts/#{post.id}"
+    find("#reply-btn#{comment.id}").click
+    within '.reply-form' do
+      fill_in 'Comment here...', with: 'here is a reply from me'
+      click_on 'Post'
+    end
+
+    zoe.reload
+    result_one = zoe.notifications.empty?
+    expect(result_one).to be_truthy
+    expect(page).to have_content('here is a reply from me')
   end
 end
 # rubocop:enable Metrics/BlockLength

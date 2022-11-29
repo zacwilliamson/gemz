@@ -18,17 +18,20 @@ RSpec.describe 'Posts', type: :system do
     fill_in 'Write your new post here...', with: 'Test post'
     click_on 'Post'
     zac.reload
-    zac.posts.reload
-    result_one = zac.posts.last.content == 'Test post'
+    post = zac.posts.last
+    visit "/posts/#{post.id}"
+
+    result_one = post.content == 'Test post'
     expect(page).to have_content('Test post')
-    expect(page).to have_content('Your post is live')
+    # expect(page).to have_content('Your post is live')
     expect(result_one).to be_truthy
 
-    # find('.edit').click
+    # find("#edit#{post.id}").click
     # fill_in 'Write your new post here...', with: 'Tester poster'
     # click_on 'Post'
     # zac.reload
-    # result_two = zac.posts.last.content == 'Tester poster'
+    # post.reload
+    # result_two = post.content == 'Tester poster'
     # expect(page).to have_content('Tester poster')
     # expect(page).to have_content('Your post was updated')
     # expect(result_two).to be_truthy

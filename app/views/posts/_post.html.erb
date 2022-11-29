@@ -13,10 +13,10 @@
       <div class="flex gap-x-3">
             <% if current_user == post.user %>
                 <%= link_to edit_post_path(post) do %>
-                  <ion-icon class="edit" name="create-outline"></ion-icon>
+                  <ion-icon id=<%="edit#{post.id}"%> name="create-outline"></ion-icon>
                 <% end %>
                 <%= button_to post, method: :delete do %>
-                  <ion-icon class="trash" name="trash-outline"></ion-icon>
+                  <ion-icon id=<%="trash#{post.id}"%> name="trash-outline"></ion-icon>
                 <% end %>
             <% end %>
         </div>
