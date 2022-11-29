@@ -1,41 +1,45 @@
 <% if comment.persisted? %>
-  <div class='flex items-center justify-between'>
-    <div class="flex items-center gap-3">
-      <img src=<%= profile_img(comment.user) %> 
-            class="rounded-full w-10 h-10">
+  <div class=<%="py-4"%> >
+    <div class='flex items-center justify-between'>
+      <div class="flex items-center gap-3">
+        <img src=<%= profile_img(comment.user) %> 
+              class="rounded-full w-10 h-10">
 
-      <p class='font-bold'><%= link_to comment.user.username, comment.user %></p>
+        <p class='font-bold'><%= link_to comment.user.username, comment.user %></p>
+      </div>
+
+      <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(comment.created_at) %> ago</p>
     </div>
 
-    <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(comment.created_at) %> ago</p>
-  </div>
+    <p class='my-2'><%= comment.content%></p>
 
-  <p class='my-2'><%= comment.content%></p>
+    <div class="flex justify-between items-center">
+          <div class="flex gap-x-3">
+              <div class="flex justify-center gap-x-1">
+                  <span id=<%= "comment_reaction_count#{comment.id}" %> ><%= comment.reactions.count %></span>
+                  <%= render 'reactions/reaction_form',  :@reactable => comment %>
+              </div>
+          </div>
 
-  <div class="flex justify-between items-center">
-        <div class="flex gap-x-3">
-            <div class="flex justify-center gap-x-1">
-                <span id=<%= "comment_reaction_count#{comment.id}" %> ><%= comment.reactions.count %></span>
-                <%= render 'reactions/reaction_form',  :@reactable => comment %>
-            </div>
-        </div>
+          <div class="flex gap-x-3">
+              <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
 
-         <div class="flex gap-x-3">
-            <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
+              <% if current_user == comment.user %>
+                  <%= button_to  post_comment_path(@post, comment), method: :delete do %>
+                    <ion-icon id=<%="trash#{comment.id}"%> name="trash-outline"></ion-icon>
+                  <% end %>
+              <% end %>
+          </div>
+    </div>
 
-            <% if current_user == comment.user %>
-                <%= button_to  post_comment_path(@post, comment), method: :delete do %>
-                  <ion-icon id=<%="trash#{comment.id}"%> name="trash-outline"></ion-icon>
-                <% end %>
-            <% end %>
-         </div>
-  </div>
+    <div class='reply-form hidden'>
+      <%= render 'comments/comment_form', :parent => comment %>
+    </div>
 
-  <div class='reply-form hidden'>
-    <%= render 'comments/comment_form', :parent => comment %>
-  </div>
-  
-  <div class='pl-5'>
-    <%= render comment.comments %>
+    <hr class="h-[1px] border-none bg-gray-300 dark:bg-gray-700 my-[0px]">
+    
+    <div class='pl-6'>
+      <%= render comment.comments %>
+    </div>
   </div>
 <% end %>
