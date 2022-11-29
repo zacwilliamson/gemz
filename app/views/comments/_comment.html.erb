@@ -2,14 +2,14 @@
   <div class=<%="pt-3"%> >
 
     <% unless comment.parent.nil? %>
-      <div class='block md:hidden flex items-center gap-1 text-gray-600 dark:text-gray-400 mb-3 ml-[9.5px] text-xs'>
+      <div class='block md:hidden flex items-center gap-1 text-gray-600 dark:text-gray-400 mb-3 ml-[9.2px] text-xs'>
         <div class="flex items-center gap-2">
           <img src=<%= profile_img(comment.parent.user) %> 
                 class="rounded-full w-5 h-5">
 
           <p class='font-bold'><%= "#{comment.parent.user.username}:"  %></p>
         </div>
-        <p><%= comment.parent.content %><p>
+        <p><%= comment.parent.content.truncate(40) %><p>
       </div>
     <% end %>
 
@@ -24,7 +24,7 @@
       <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(comment.created_at) %> ago</p>
     </div>
 
-    <p class='my-2'><%= comment.content%></p>
+    <p class='mt-2 mb-4'><%= comment.content%></p>
 
     <div class="flex justify-between items-center">
           <div class="flex gap-x-3">
@@ -35,11 +35,11 @@
           </div>
 
           <div class="flex gap-x-3">
-              <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer' name="arrow-undo"></ion-icon>
+              <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer text-xl' name="arrow-undo"></ion-icon>
 
               <% if current_user == comment.user %>
                   <%= button_to  post_comment_path(@post, comment), method: :delete do %>
-                    <ion-icon id=<%="trash#{comment.id}"%> name="trash-outline"></ion-icon>
+                    <ion-icon id=<%="trash#{comment.id}"%> class="text-xl" name="trash-outline"></ion-icon>
                   <% end %>
               <% end %>
           </div>

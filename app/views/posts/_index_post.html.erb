@@ -16,7 +16,7 @@
         <%= image_tag post.image.variant(:display), class: 'rounded-md' if post.image.attached? %>
     </div>
 
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center mt-3">
         <div class="flex gap-x-3">
             <div class="flex justify-center gap-x-1">
                 <span id=<%= "post_reaction_count#{post.id}" %> ><%= post.reactions.count %></span>
@@ -24,18 +24,18 @@
             </div>
 
             <%= link_to post_path(post) do %>
-            <span><%= post.comments.count %></span>
-              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <span><%= post.comments.count %></span>
+              <ion-icon class="text-xl" name="chatbubbles-outline"></ion-icon>
             <% end %>
         </div>
 
          <div class="flex gap-x-3">
             <% if current_user == post.user %>
                 <%= link_to edit_post_path(post) do %>
-                  <ion-icon class="edit" name="create-outline"></ion-icon>
+                  <ion-icon class="edit text-xl" name="create-outline"></ion-icon>
                 <% end %>
                 <%= button_to post, method: :delete do %>
-                  <ion-icon class="trash" name="trash-outline"></ion-icon>
+                  <ion-icon class="trash text-xl" name="trash-outline"></ion-icon>
                 <% end %>
             <% end %>
         </div>
