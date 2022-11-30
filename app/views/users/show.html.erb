@@ -1,10 +1,14 @@
-<img src=<%= profile_img(@user) %> 
-     class="border-solid border-2 border-gray-500 rounded-full w-20 h-20 md:w-60 md:h-60 lg:w-64 lg:h-64">
+<div class='flex'>
+  <img src=<%= profile_img(@user) %> 
+      class="border-solid border-2 border-gray-500 rounded-full w-20 h-20 md:w-60 md:h-60 lg:w-64 lg:h-64 mb-5 mr-5">
+</div>
 
-<h1>
-<%= @user.username %>
-</h1>
-
+<% if @user.profile.full_name.empty? %>
+  <h1 class='text-3xl font-bold'><%= @user.username %></h1>
+<% else %>
+  <h1 class='text-3xl font-bold'><%= @user.profile.full_name%></h1>
+  <h3 class='text-2xl text-gray-600 dark:text-gray-400 font-bold'><%= @user.username%></h1>
+<% end %>
 
 <span id=<%= "friend_count#{@user.id}" %>>
 <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>
