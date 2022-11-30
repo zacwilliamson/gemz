@@ -6,6 +6,10 @@
   <% end %>
 <% end %>
 
+<%= turbo_stream.update "friend_count#{@user.id}" do %>
+  <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>
+<% end %>
+
 <%= turbo_stream.update "message#{@user.id}" do %>
   <% if current_user.friends_with?(@user) %>
     <%= @user.friendships.find_by(friend: current_user).message %>
