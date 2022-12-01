@@ -1,29 +1,38 @@
-<div class='flex'>
-  <img src=<%= profile_img(@user) %> 
-      class="border-solid border-2 border-gray-500 rounded-full w-20 h-20 md:w-60 md:h-60 lg:w-64 lg:h-64 mb-5 mr-5">
+<div class="flex flex-col items-center py-4">
+  <div class='flex flex-col items-center md:flex-row md:justify-center md:gap-x-9'>
+    <img src=<%= profile_img(@user) %> 
+        class="border-solid border-2 border-gray-500 rounded-full w-40 h-40 md:w-60 md:h-60 lg:w-64 lg:h-64">
+
+    <div>
+      <% if @user.profile.full_name.nil? || @user.profile.full_name.empty? %>
+        <h1 class='text-3xl text-center md:text-left font-bold'><%= @user.username %></h1>
+      <% else %>
+        <h1 class='text-3xl text-center md:text-left font-bold'><%= @user.profile.full_name%></h1>
+        <h3 class='text-2xl text-center md:text-left text-gray-600 dark:text-gray-400 font-bold'><%= @user.username%></h1>
+      <% end %>
+
+      <div class="flex flex-col gap-y-1 items-center md:items-start">
+        <div class='my-2'>
+          <%= render 'friend_form' %>
+          <%= render 'profiles/profile_links' %>
+        </div>
+    
+        <span id=<%= "friend_count#{@user.id}"%> class="flex items-center justify-center md:justify-start gap-x-1">
+            <ion-icon class="text-2xl" name="people"></ion-icon>
+            <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>
+        </span>
+
+        <%= render @user.profile unless @user.profile.nil? %>
+      </div>
+    </div>
+  </div>
+
+  <div class='mt-4 text-gray-600 dark:text-gray-400'>
+      <%= @user.profile.bio unless @user.profile.bio.nil? || @user.profile.bio.empty? %>
+  </div>
 </div>
 
-<% if @user.profile.full_name.nil? || @user.profile.full_name.empty? %>
-  <h1 class='text-3xl font-bold'><%= @user.username %></h1>
-<% else %>
-  <h1 class='text-3xl font-bold'><%= @user.profile.full_name%></h1>
-  <h3 class='text-2xl text-gray-600 dark:text-gray-400 font-bold'><%= @user.username%></h1>
-<% end %>
-
-<div class="my-1">
-  <%= render 'friend_form' %>
-</div>
-
-<span id=<%= "friend_count#{@user.id}"%> class="flex items-center gap-x-1">
-  <ion-icon class="text-2xl" name="people"></ion-icon>
-  <%= link_to pluralize(@user.active_friends.count, 'friend'), friends_user_path(@user) %>
-</span>
-
-<%= render 'profiles/profile_links' %>
-
-<%= render @user.profile unless @user.profile.nil? %>
-
-<h2><%= pluralize(@posts.count, 'Post') %></h2>
+<h2 class="text-3xl font-bold"><%= pluralize(@posts.count, 'Post') %></h2>
 
 <%= render 'posts/post_form' if @user == current_user %>
 

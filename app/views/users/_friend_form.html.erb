@@ -1,5 +1,5 @@
 <% unless current_user == @user %>
-  <div class = 'flex text-sm gap-x-2' id=<%= "friend_form#{@user.id}" %> >
+  <div class ='flex gap-x-2' id=<%= "friend_form#{@user.id}" %> >
   <% if current_user.recived_request?(@user) %>
     <%= render 'add_friend', :user => @user %>
     <%= render 'unfriend', :user => @user %>

@@ -1,13 +1,13 @@
-<div>
-  <div>
-    <%= profile.location %>
+<% unless profile.location.nil? || profile.location.empty? %>
+  <div class='flex items-center justify-center md:justify-start gap-x-1'>
+    <ion-icon class="text-xl" name="pin"></ion-icon>
+    <span class="text-center md:text-left"><%= profile.location %><span>
   </div>
+<% end %>
 
-  <div>
-    <%= profile.bio %>
+<% unless profile.link.nil? || profile.link.empty? %>
+  <div class='flex items-center justify-center md:justify-start gap-x-1'>
+    <ion-icon class="text-xl" name="link"></ion-icon>
+    <span class="underline text-center md:text-left"><%= link_to profile.link, profile.link unless profile.link.nil? %></span>
   </div>
-
-  <div>
-    <%= link_to profile.link, profile.link unless profile.link.nil? %>
-  </div>
-</div>
+<% end %>
