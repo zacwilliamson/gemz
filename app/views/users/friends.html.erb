@@ -1,10 +1,14 @@
-<h1><%= @user.username %>'s friends...</h1>
+<h1 class="text-3xl mb-2 duration-500 font-bold"><%= @user.username %>'s friends...</h1>
 
 <ul>
   <% @friends.each do |friend|%>
-    <li>
-      <img src=<%= profile_img(friend) %> class="rounded-full w-14 h-14">
-      <%= link_to friend.username, friend %>
+    <li class="flex flex-col md:flex-row md:items-center bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700 gap-x-3">
+      <div class="flex items-center gap-x-3">
+          <img src=<%= profile_img(friend) %> class="rounded-full w-10 h-10 md:w-14 md:h-14">
+
+          <p><%= link_to friend.username, friend %></p>
+          <p class='text-gray-600 dark:text-gray-400'><%= friend.profile.full_name unless friend.profile.full_name.nil? || friend.profile.full_name.empty? %></p>
+        </div>
     </li>
   <% end %> 
 </ul>
