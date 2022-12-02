@@ -5,21 +5,13 @@ class Profile < ApplicationRecord
     attachable.variant :display, resize_to_limit: [500, 500]
   end
 
-  after_create :set_background
+  after_create :set_color
 
-  def set_background
-    self.background = colors.values.sample
+  def set_color
+    self.color = color_list.sample
   end
 
-  def colors
-    { red: 'bg-[#ff5769]',
-      orange: 'bg-[#ff5769]',
-      yellow: 'bg-[#ffae40]',
-      green: 'bg-[#68be61]',
-      cyan: 'bg-[#30cdbf]',
-      lightblue: 'bg-[#6cb0f3]',
-      darkblue: 'bg-[#5082e7]',
-      purple: 'bg-[#7670cc]',
-      pink: 'bg-[#f57aae]' }
+  def color_list
+    %w[red orange yellow green cyan lightblue darkblue purple pink]
   end
 end
