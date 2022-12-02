@@ -1,17 +1,29 @@
-<h1>Find Friends</h1>
+<div>
+  <h1 class="text-3xl mb-2 duration-500 font-bold">Find Friends</h1>
 
-<%= form_with url: "/users", method: :get, remote: true do |f| %>
-  <%= f.text_field(:username, placeholder: 'Search username here...') %>
-  <%= f.submit "Search" %>
-<% end %>
-
-<ul>
-  <% @users.each do |u| %>
-    <img src=<%= profile_img(u) %> class="rounded-full w-14 h-14">
-
-    <%= link_to u.username, u %>
-    
-    <%= render 'friend_form',  :@user => u %>
+  <%= form_with url: "/users", method: :get, remote: true do |f| %>
+    <div class='flex items-center'>
+      <ion-icon class="text-2xl" name="search"></ion-icon>
+      <%= f.text_field(:username, placeholder: 'Search username here...', :class => 'input-primary dark:input-dark mx-3') %>
+      <%= f.submit "Search", :class => 'bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-md duration-500 hover:cursor-pointer' %>
+    </div>
   <% end %>
-</ul>
-<%= paginate @users %>
+
+  <ul>
+    <% @users.each do |u| %>
+      <li class="flex flex-col md:flex-row md:items-center justify-between bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-x-3">
+          <img src=<%= profile_img(u) %> class="rounded-full w-14 h-14">
+
+          <p><%= link_to u.username, u %></p>
+          <p class='text-gray-600 dark:text-gray-400'><%= u.profile.full_name unless u.profile.full_name.nil? || u.profile.full_name.empty? %></p>
+        </div>
+        
+        <div class="self-end md:self-center mb-1 md:mb-0">
+          <%= render 'friend_form',  :@user => u %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @users %>
+</div>
