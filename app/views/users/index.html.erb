@@ -16,6 +16,7 @@
           <img src=<%= profile_img(u) %> class="rounded-full w-10 h-10 md:w-14 md:h-14">
 
           <p><%= link_to u.username, u %></p>
+          
           <p class='text-gray-600 dark:text-gray-400'><%= u.profile.full_name unless u.profile.full_name.nil? || u.profile.full_name.empty? %></p>
         </div>
         
