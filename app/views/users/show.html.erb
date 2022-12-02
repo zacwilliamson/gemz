@@ -1,21 +1,29 @@
-<div class="flex flex-col items-center py-4">
-  <div class='flex flex-col items-center md:flex-row md:justify-center md:gap-x-9'>
-    <img src=<%= profile_img(@user) %> 
-        class="border-solid border-2 border-gray-500 rounded-full w-40 h-40 md:w-60 md:h-60 lg:w-64 lg:h-64">
+<div class="h-[100px] bg-rose-500 rounded-t-[6px]">
+</div>
+<div class="flex flex-col items-start md:items-center py-4 rounded-[6px] bg-white shadow-md dark:bg-dm-2 dark:shadow-none mb-3">
 
+  <img src=<%= profile_img(@user) %> 
+        class="border-solid border-8 border-rose-500 rounded-full w-40 h-40 md:w-35 md:h-35 absolute top-8">
+
+  <div class='self-end mr-4'>
+        <%= render 'friend_form' %>
+        <%= render 'profiles/profile_links' %>
+  </div>
+
+  <div class='flex flex-col items-center md:items-start md:gap-x-9 md:mt-9 md:pb-4'>
     <div>
       <% if @user.profile.full_name.nil? || @user.profile.full_name.empty? %>
         <h1 class='text-3xl text-center md:text-left font-bold'><%= @user.username %></h1>
       <% else %>
-        <h1 class='text-3xl text-center md:text-left font-bold'><%= @user.profile.full_name%></h1>
-        <h3 class='text-2xl text-center md:text-left text-gray-600 dark:text-gray-400 font-bold'><%= @user.username%></h1>
+        <h1 class='text-3xl text-left md:text-center font-bold'><%= @user.profile.full_name%></h1>
+        <h3 class='text-2xl text-left md:text-center text-gray-600 dark:text-gray-400 font-bold'><%= @user.username%></h1>
       <% end %>
 
-      <div class="flex flex-col gap-y-1 items-center md:items-start">
-        <div class='my-2'>
-          <%= render 'friend_form' %>
-          <%= render 'profiles/profile_links' %>
-        </div>
+      <div class='text-left md:text-center my-1'>
+        <%= @user.profile.bio unless @user.profile.bio.nil? || @user.profile.bio.empty? %>
+      </div>
+
+      <div class="flex flex-col items-start md:flex-row gap-x-3 md:justify-between text-gray-600 dark:text-gray-400">
     
         <span id=<%= "friend_count#{@user.id}"%> class="flex items-center justify-center md:justify-start gap-x-1">
             <ion-icon class="text-2xl" name="people"></ion-icon>
@@ -25,10 +33,6 @@
         <%= render @user.profile unless @user.profile.nil? %>
       </div>
     </div>
-  </div>
-
-  <div class='mt-4 text-gray-600 dark:text-gray-400'>
-      <%= @user.profile.bio unless @user.profile.bio.nil? || @user.profile.bio.empty? %>
   </div>
 </div>
 
