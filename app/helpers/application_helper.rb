@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def right_content(controller, action)
-    return 'px-5 my-4' unless ['sessions#new',
-                          'registrations#new'].include?("#{controller}##{action}")
+    return 'px-5 my-0 md:my-4' unless ['sessions#new',
+                                       'registrations#new'].include?("#{controller}##{action}")
   end
 end
