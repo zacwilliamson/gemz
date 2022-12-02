@@ -13,7 +13,7 @@
     <% @users.each do |u| %>
       <li class="flex flex-col md:flex-row md:items-center justify-between bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-3 py-3 px-4 border border-gray-100 dark:border-gray-700">
         <div class="flex items-center gap-x-3">
-          <img src=<%= profile_img(u) %> class="rounded-full w-14 h-14">
+          <img src=<%= profile_img(u) %> class="rounded-full w-10 h-10 md:w-14 md:h-14">
 
           <p><%= link_to u.username, u %></p>
           <p class='text-gray-600 dark:text-gray-400'><%= u.profile.full_name unless u.profile.full_name.nil? || u.profile.full_name.empty? %></p>
