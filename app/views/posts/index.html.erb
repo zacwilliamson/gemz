@@ -1,14 +1,16 @@
-<div>
-  <h1 class="text-3xl duration-500 font-bold">Welcome <%= current_user.username %></h1>
-    
-  <%= render 'posts/post_form' %>
+<%= turbo_frame_tag "post-index" do %>
+  <div>
+    <h1 class="text-3xl duration-500 font-bold">Welcome <%= current_user.username %></h1>
+      
+    <%= render 'posts/post_form' %>
 
-  <% unless @feed.empty? %>
-  <div id=<%= "feed#{current_user.id}"%> >
-    <% @feed.each do |post| %>
-      <%= render 'index_post', :post => post %>
+    <% unless @feed.empty? %>
+    <div id=<%= "feed#{current_user.id}"%> >
+      <% @feed.each do |post| %>
+        <%= render 'index_post', :post => post %>
+      <% end %>
+      <%= paginate @feed %>
+    </div>
     <% end %>
-    <%= paginate @feed %>
   </div>
-  <% end %>
-</div>
+<% end %>

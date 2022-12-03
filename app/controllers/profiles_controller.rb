@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       attach_img
-      flash[:notice] = 'Your profile was updated'
+      # flash[:notice] = 'Your profile was updated'
       redirect_to @profile.user
     else
       redirect_to request.referrer, status: :see_other
