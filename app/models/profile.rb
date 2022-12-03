@@ -9,6 +9,7 @@ class Profile < ApplicationRecord
 
   def set_color
     self.color = color_list.sample
+    save
   end
 
   def color_list
