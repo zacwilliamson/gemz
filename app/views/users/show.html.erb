@@ -39,8 +39,6 @@
 
 <h2 class="text-3xl font-bold"><%= pluralize(@posts.count, 'Post') %></h2>
 
-<%= render 'posts/post_form' if @user == current_user %>
-
 <% unless @posts.empty? %>
   <% @posts.each do |post| %>
     <%= render 'posts/index_post', :post => post %>

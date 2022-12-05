@@ -14,21 +14,16 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.image.attach(params[:post][:image])
     if @post.save
-      respond_to do |format|
-        format.html { redirect_to request.referrer }
-        # format.turbo_stream
-      end
+      redirect_to request.referrer
     else
-      redirect_to request.referrer, status: :unprocessable_entity
+      @feed = current_user.feed.page(params[:page])
+      render 'index', status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url, status: :see_other }
-      # format.turbo_stream
-    end
+    redirect_to root_url, status: :see_other
   end
 
   def update
