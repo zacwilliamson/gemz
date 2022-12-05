@@ -11,7 +11,7 @@
       <p class="text-xs text-gray-800 dark:text-gray-200 justify-self-end"><%= time_ago_in_words(post.created_at) %> ago</p>
     </div>
 
-   <p class="text-gray-800 dark:text-gray-200 my-3"><%= post.content %><p>
+   <p class="text-gray-800 dark:text-gray-200 my-3 break-words"><%= post.content %><p>
 
     <div class='self-center mb-2'>
       <%= image_tag post.image.variant(:display), class: 'rounded-md' if post.image.attached? %>
