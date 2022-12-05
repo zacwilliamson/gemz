@@ -14,7 +14,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     @post.image.attach(params[:post][:image])
     if @post.save
-      # flash[:notice] = 'Your post is live'
       respond_to do |format|
         format.html { redirect_to request.referrer }
         # format.turbo_stream
@@ -26,7 +25,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    # flash[:notice] = 'Your post was deleted'
     respond_to do |format|
       format.html { redirect_to root_url, status: :see_other }
       # format.turbo_stream
@@ -35,15 +33,13 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      # flash[:notice] = 'Your post was updated'
       redirect_to post_url(@post)
     else
       redirect_to request.referrer, status: :see_other
     end
   end
 
-  def show
-  end
+  def show; end
 
   def edit; end
 

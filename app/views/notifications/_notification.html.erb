@@ -14,7 +14,7 @@
       <div>
         <span class="font-bold"><%= link_to notification.sender.username, notification.sender %></span>
         
-        <span id=<%= "message#{notification.sender.id}" %> >
+        <span id=<%= "#{notification.notifiable_type.downcase}-message#{notification.sender.id}" %> >
           <%= notification.message %>
         </span>
       </div>
