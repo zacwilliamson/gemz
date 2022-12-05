@@ -15,6 +15,15 @@
     <%= f.text_area :bio, placeholder: 'Bio' %>
   </div>
 
+  <p>Set profile color</p>
+
+   <% profile.color_list.each do |color| %>
+      <div class='mt-3 md:mt-0'>
+        <%= f.radio_button :color, color  %>
+        <%= f.label :color, color %>
+      </div>
+    <% end %>
+
   <div>
     <%= f.submit "Submit" %>
   </div>
