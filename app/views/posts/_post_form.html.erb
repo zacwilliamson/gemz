@@ -1,5 +1,6 @@
 <div class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 my-2 py-3 px-4 border border-gray-100 dark:border-gray-700">
   <%= form_with(model: @post) do |f| %>
+    <%= render 'layouts/error_messages', object: @post %>
     <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none my-3 h-28 shadow-none outline-none p-0 my-0' %>
     <div class="flex justify-between items-center">
       <span class="image z-[0] mt-4">
