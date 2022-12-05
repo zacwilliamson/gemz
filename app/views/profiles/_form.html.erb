@@ -1,34 +1,35 @@
 <%= form_with(model: profile) do |f| %>
   <div>
-    <%= f.text_field :full_name, placeholder: 'Full Name' %>
+    <%= f.text_field :full_name, placeholder: 'Full Name', :class => 'input-primary dark:input-dark' %>
   </div>
 
   <div>
-    <%= f.text_field :location, placeholder: 'Location' %>
+    <%= f.text_field :location, placeholder: 'Location', :class => 'input-primary dark:input-dark' %>
   </div>
 
   <div>
-    <%= f.text_field :link, placeholder: 'Website' %>
+    <%= f.text_field :link, placeholder: 'Website', :class => 'input-primary dark:input-dark' %>
   </div>
 
   <div>
-    <%= f.text_area :bio, placeholder: 'Bio' %>
+    <%= f.text_area :bio, placeholder: 'Bio', :class => 'input-primary dark:input-dark resize-none' %>
   </div>
 
-  <p>Set profile color</p>
+  <p class="text-3xl font-bold">Set color</p>
 
-   <% profile.color_list.each do |color| %>
-      <div class='mt-3 md:mt-0'>
-        <%= f.radio_button :color, color  %>
-        <%= f.label :color, color %>
-      </div>
+  <div class="flex gap-x-2">
+    <% profile.color_list.each do |color| %>
+      <%= f.radio_button :color, color, class: "w-7 h-7 rounded-full #{bg_colors[color.to_sym]}" %>
     <% end %>
-
-  <div>
-    <%= f.submit "Submit" %>
   </div>
 
-  <span class="image">
+  <div>
+    <%= f.submit "Submit", class: 'bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-md duration-500 hover:cursor-pointer my-3' %>
+  </div>
+
+  <p class="text-3xl font-bold">Set profile image</p>
+
+  <span class="image my-2">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
 
