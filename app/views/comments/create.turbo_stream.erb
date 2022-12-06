@@ -1,0 +1,3 @@
+<%= turbo_stream.update "comment_count#{@comment.post.id}" do %>
+  <%= pluralize(@post.comments.count, 'Comment') %>
+<% end %>

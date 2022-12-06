@@ -5,13 +5,19 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.create(comment_params)
     notify(@post.user, @comment)
-    redirect_to post_path(@post)
+    respond_to do |format|
+      format.html { redirect_to post_path(@post) }
+      format.turbo_stream
+    end
   end
 
   def destroy
-    comment = @post.comments.find(params[:id])
-    comment.destroy
-    redirect_to post_path(@post), status: :see_other
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to post_path(@post), status: :see_other }
+      format.turbo_stream
+    end
   end
 
   private
