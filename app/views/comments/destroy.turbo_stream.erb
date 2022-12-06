@@ -1,3 +1,5 @@
 <%= turbo_stream.update "comment_count#{@comment.post.id}" do %>
   <%= pluralize(@post.comments.count, 'Comment') %>
 <% end %>
+
+<%= turbo_stream.remove "comment#{@comment.id}" %>

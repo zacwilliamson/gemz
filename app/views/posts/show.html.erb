@@ -3,4 +3,6 @@
 <h2 id=<%= "comment_count#{@post.id}" %> class='text-3xl duration-500 font-bold my-4'><%= pluralize(@post.comments.count, 'Comment') %></h2>
 <%= render 'comments/comment_form', :parent => nil %>
 
-<%= render @post.comments.where(parent_id: nil) %>
+<div id=<%= "comments#{@post.id}" %>>
+  <%= render @post.comments.where(parent_id: nil) %>
+</div>

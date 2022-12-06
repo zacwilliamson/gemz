@@ -1,5 +1,5 @@
 <% if comment.persisted? %>
-  <div class=<%="pt-3"%> >
+  <div id=<%= "comment#{comment.id}" %> class=<%="pt-3"%> >
 
     <% unless comment.parent.nil? %>
       <div class='block md:hidden flex items-center gap-1 text-gray-600 dark:text-gray-400 mb-3 ml-[9.2px] text-xs'>
