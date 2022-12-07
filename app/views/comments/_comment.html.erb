@@ -35,7 +35,7 @@
           </div>
 
           <div class="flex gap-x-3">
-              <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer text-xl' name="arrow-undo"></ion-icon>
+              <ion-icon id=<%="reply-btn#{comment.id}"%> class='reply-btn hover:cursor-pointer text-xl' name="arrow-undo", data-controller="reply-form", data-action="click->reply-form#toggle"></ion-icon>
 
               <% if current_user == comment.user %>
                   <%= button_to  post_comment_path(@post, comment), method: :delete do %>
@@ -45,7 +45,7 @@
           </div>
     </div>
 
-    <div class='reply-form hidden'>
+    <div class='reply-form hidden' data-action="reply-form#toggle">
       <%= render 'comments/comment_form', :parent => comment %>
     </div>
 
