@@ -4,10 +4,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params)
-    notify(@post.user, @comment)
-    respond_to do |format|
-      format.html { redirect_to post_path(@post) }
-      format.turbo_stream
+    if @comment.save
+      notify(@post.user, @comment)
+      respond_to do |format|
+        format.html { redirect_to post_path(@post) }
+        format.turbo_stream
+      end
     end
   end
 

@@ -32,5 +32,3 @@ export default class extends Controller {
     }
   }
 }
-
-// || textArea.value.length <= 250
