@@ -20,14 +20,17 @@ export default class extends Controller {
 
   close(){
     let replyForm = this.element.parentElement.parentElement.parentElement.parentElement
+    let textArea = this.element.parentElement.previousElementSibling
     let reply_btn = document.querySelectorAll('.reply-btn');
+    console.log(textArea.value.length)
      
-    if(replyForm.classList.contains('reply-form')){
+    if(replyForm.classList.contains('reply-form') && textArea.value.trim().length > 0 && textArea.value.length <= 250){
       replyForm.classList.add('hidden')
-
       reply_btn.forEach((btn) => {
         btn.name = 'arrow-undo'
       })
     }
   }
 }
+
+// || textArea.value.length <= 250
