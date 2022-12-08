@@ -51,7 +51,7 @@
 
     <hr class="h-[1px] border-none bg-gray-300 dark:bg-gray-700 my-[0px]">
     
-    <div class='pl-0 md:pl-7'>
+    <div id=<%= "nested#{comment.id}" %> class='pl-0 md:pl-7'>
       <%= render comment.comments %>
     </div>
   </div>
