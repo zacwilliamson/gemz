@@ -1,7 +1,12 @@
-<% unless notice.nil? %>
-    <p class="notice text-center border-solid border-2 border-green-500 rounded-md w-fit m-auto py-2 px-3 my-3"><%= notice %></p>
-<% end %>
+<div class="flex justify-center">
+    <% unless notice.nil? %>
+        <p class="notice text-center text-white border-solid rounded-md w-fit m-auto py-2 px-3 my-3"><%= notice %></p>
+    <% end %>
 
-<% unless alert.nil? %>
-    <p class="alert text-center border-solid border-2 border-red-500 rounded-md w-fit m-auto py-2 px-3 my-3"><%= alert %></p>
-<% end %>
+    <% unless alert.nil? %>
+        <p class="alert text-center text-white border-solid rounded-md w-fit m-auto py-2 px-3 my-3"><%= alert %></p>
+    <% end %>
+
+    <p id="reply-alert" class="alert text-center text-white bg-red-500 rounded-md w-fit m-auto py-2 px-3 my-3 fixed z-10 hidden"></p>
+    <p id="reply-notice" class="duration-500 alert text-center text-white bg-emerald-500 dark:bg-emerald-600 rounded-md w-fit m-auto py-2 px-3 my-3 fixed z-10 hidden"></p>
+</div>

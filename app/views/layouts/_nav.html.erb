@@ -3,12 +3,12 @@
         <div class="flex justify-between items-center">
             <span>
                 <%= link_to root_path do %>
-                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 p-2 md:p-0 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-700 md:shadow-none <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
+                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 p-2 md:p-0 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-800 md:shadow-none <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
                 <% end %>
             </span>
 
             <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-                <ion-icon id="burger" class="p-2 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-700" name="menu"></ion-icon>
+                <ion-icon id="burger" class="p-2 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-800" name="menu"></ion-icon>
             </span>
         </div>
 

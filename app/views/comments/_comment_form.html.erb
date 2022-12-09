@@ -4,7 +4,7 @@
       <%= f.hidden_field :parent_id, :value => parent.id unless parent.nil? %>
       <%= f.text_area :content, placeholder: "Write a comment here:", :class => 'input-primary dark:input-dark resize-none my-3 h-14 shadow-none outline-none p-0 my-0' %>
       <div class='flex justify-end mt-2'>
-         <span data-controller="reply-form" data-action="click->reply-form#close"><%= f.submit "Post", :class => 'bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-md duration-500 hover:cursor-pointer' %></span>
+         <span data-controller="reply-form" data-action="click->reply-form#close"><%= f.submit "Post", :class => 'bg-emerald-500 hover:bg-emerald-400 dark:bg-emerald-600 dark:hover:bg-emerald-500s text-white px-3 py-2 rounded-md duration-500 hover:cursor-pointer' %></span>
       </div>
    <% end %>
 </div>
