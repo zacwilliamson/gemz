@@ -1,18 +1,18 @@
 <% if current_user %>
-    <nav id="nav" class="py-3 px-4 md:flex md:flex-col fixed md:h-screen md:w-fit w-full z-50 ">
+    <nav id="nav" class="pt-2 px-4 md:flex md:flex-col fixed md:h-screen md:w-fit w-full z-50 ">
         <div class="flex justify-between items-center">
             <span>
                 <%= link_to root_path do %>
-                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
+                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 p-2 md:p-0 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-700 md:shadow-none <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
                 <% end %>
             </span>
 
             <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-                <ion-icon id="burger" name="menu"></ion-icon>
+                <ion-icon id="burger" class="p-2 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-700" name="menu"></ion-icon>
             </span>
         </div>
 
-        <ul id="list" class="md:flex flex-col md:ml-4 md:static absolute w-full h-screen left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 bg-lm-1 dark:bg-dm-1 z-50">
+        <ul id="list" class="md:flex flex-col md:ml-4 md:static absolute w-full h-screen left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 mt-0 bg-lm-1 dark:bg-dm-1 z-50">
             <%= link_to root_path do %>
                 <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="home" class="text-2xl"></ion-icon>
