@@ -1,5 +1,5 @@
 <% if current_user %>
-    <nav class="py-3 px-4 md:flex md:flex-col md:fixed md:h-screen bg-lm-1 dark:bg-dm-1">
+    <nav id="nav" class="py-3 px-4 md:flex md:flex-col fixed md:h-screen md:w-fit w-full z-50 ">
         <div class="flex justify-between items-center">
             <span>
                 <%= link_to root_path do %>
@@ -8,11 +8,11 @@
             </span>
 
             <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-                <ion-icon id="burger" name="menu" data-controller="menu" data-action="click->menu#toggle"></ion-icon>
+                <ion-icon id="burger" name="menu"></ion-icon>
             </span>
         </div>
 
-         <ul id="list" class="md:flex flex-col md:ml-4 md:static absolute w-full h-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 md:opacity-100 bg-lm-1 dark:bg-dm-1 z-10">
+        <ul id="list" class="md:flex flex-col md:ml-4 md:static absolute w-full h-screen left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 md:mt-0 mt-1.5 bg-lm-1 dark:bg-dm-1 z-50">
             <%= link_to root_path do %>
                 <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="home" class="text-2xl"></ion-icon>

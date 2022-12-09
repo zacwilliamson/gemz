@@ -4,9 +4,9 @@
   <%= form_with(model: @post) do |f| %>
     <%= f.text_area :content, placeholder: "Write your new post here...", :class => 'input-primary dark:input-dark resize-none my-3 h-28 shadow-none outline-none p-0 my-0' %>
     <div class="flex justify-between items-center">
-      <span class="image z-[0] mt-4">
+      <span class="image mt-4">
           <%= f.label :image do %>
-            <ion-icon name="image-outline" class="text-3xl hover:cursor-pointer"></ion-icon>
+            <ion-icon name="image-outline" class="z-[-1] text-3xl hover:cursor-pointer"></ion-icon>
           <% end %>
           <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", :class => 'inputfile' %>
       </span>
