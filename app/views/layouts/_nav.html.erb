@@ -14,21 +14,21 @@
 
         <ul id="list" class="md:flex flex-col md:ml-4 md:static absolute w-full h-screen left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-0 mt-0 bg-lm-1 dark:bg-dm-1 z-50">
             <%= link_to root_path do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="home" class="text-2xl"></ion-icon>
                      <p>Home</p>
                 </li>
             <% end %>
 
             <%= link_to current_user do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="person-circle" class="text-2xl"></ion-icon>
                     <p>Profile</p>
                 </li>
             <% end %>
 
              <%= link_to notifications_user_path(current_user) do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <% unless current_user.new_notifications.count.zero? %>
                     <span class="text-sm bg-rose-500 w-[9px] h-[9px] rounded-full absolute z-[1] ml-[15px] mb-3 text-rose-500 border border-lm-1 dark:border-dm-1"></span>
                     <% end %>
@@ -38,21 +38,21 @@
             <% end %>
 
             <%= link_to users_path do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="accessibility" class="text-2xl"></ion-icon>
                     <p>Find friends</p>
                 </li>
             <% end %>
 
             <%= link_to edit_user_registration_path do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="cog" class="text-2xl"></ion-icon>
                     <p>Settings</p>
                 </li>
             <% end %>
 
              <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
-                <li class="mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
+                <li class="nav-item mx-1 my-3 text-xl hover:bg-gray-200 dark:hover:bg-gray-800 w-fit py-2 px-3 rounded-3xl duration-500 flex items-center gap-3">
                     <ion-icon name="log-out" class="text-2xl"></ion-icon>
                      <p>Log out</p>
                 </li>
