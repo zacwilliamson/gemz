@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center">
             <span>
                 <%= link_to root_path do %>
-                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 p-2 md:p-0 bg-lm-1 dark:bg-dm-1 rounded-full shadow-md dark:shadow-gray-800 md:shadow-none <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
+                  <ion-icon name="diamond-sharp" class="text-4xl md:mx-7 my-3 <%= text_colors[current_user.profile.color.to_sym] %>"></ion-icon>
                 <% end %>
             </span>
 

@@ -1,7 +1,7 @@
 module ApplicationHelper
   def main_layout(controller, action)
-    return 'pt-[90px] md:pt-[0px] md:pl-[243px]' unless ['sessions#new',
-                                                          'registrations#new'].include?("#{controller}##{action}")
+    return 'pt-[85px] md:pt-[0px] md:pl-[243px]' unless ['sessions#new',
+                                                         'registrations#new'].include?("#{controller}##{action}")
   end
 
   def right_content(controller, action)
