@@ -1,12 +1,11 @@
 module ApplicationHelper
-  def main_layout(controller, action)
-    return 'pt-[85px] md:pt-[0px] md:pl-[243px]' unless ['sessions#new',
-                                                         'registrations#new'].include?("#{controller}##{action}")
+  def main_layout
+    # debugger
+    return 'pt-[85px] md:pt-[0px] md:pl-[243px]' if user_signed_in?
   end
 
-  def right_content(controller, action)
-    return 'px-5 my-0 md:my-4' unless ['sessions#new',
-                                       'registrations#new'].include?("#{controller}##{action}")
+  def right_content
+    return 'px-5 my-0 md:my-4' if user_signed_in?
   end
 
   def bg_colors

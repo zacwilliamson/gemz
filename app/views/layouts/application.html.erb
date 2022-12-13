@@ -16,8 +16,8 @@
 
   <body class='poppins bg-lm-1 text-dm-1 dark:bg-dm-1 dark:text-lm-1 h-screen w-screen' > 
     <%= render 'layouts/nav' %>
-    <div class="w-full <%= main_layout(controller_name, action_name) %>">
-      <div class="w-full <%= right_content(controller_name, action_name) %>">
+    <div class="w-full <%= main_layout %>">
+      <div class="w-full <%= right_content %>">
         <%= render 'layouts/flash' %>
         <%= yield %>
       </div>
