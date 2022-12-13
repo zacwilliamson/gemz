@@ -1,6 +1,5 @@
 module ApplicationHelper
   def main_layout
-    # debugger
     return 'pt-[85px] md:pt-[0px] md:pl-[243px]' if user_signed_in?
   end
 

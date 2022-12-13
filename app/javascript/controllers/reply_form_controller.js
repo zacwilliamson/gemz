@@ -18,38 +18,38 @@ export default class extends Controller {
     }
   }
 
-  close(){
-    let replyForm = this.element.parentElement.parentElement.parentElement.parentElement
-    let textArea = this.element.parentElement.previousElementSibling
-    let reply_btn = document.querySelectorAll('.reply-btn');
-    let alert = document.querySelector('#reply-alert')
-    let notice = document.querySelector('#reply-notice')
+  // close(){
+  //   let replyForm = this.element.parentElement.parentElement.parentElement.parentElement
+  //   let textArea = this.element.parentElement.previousElementSibling
+  //   let reply_btn = document.querySelectorAll('.reply-btn');
+  //   let alert = document.querySelector('#reply-alert')
+  //   let notice = document.querySelector('#reply-notice')
 
-    if(textArea.value.trim().length == 0){
-      alert.classList.remove('hidden')
-      alert.textContent = 'Content can not be empty'
-      setTimeout(() => {
-        alert.classList.add('hidden');
-      }, 2500);
-    } else if(textArea.value.length > 250){
-      alert.classList.remove('hidden')
-      alert.textContent = 'Exceeds 250 characters'
-      setTimeout(() => {
-        alert.classList.add('hidden');
-      }, 2500);
-    } else {
-      if(replyForm.classList.contains('reply-form')){
-        replyForm.classList.add('hidden')
-        reply_btn.forEach((btn) => {
-          btn.name = 'arrow-undo'
-        })
-      }
-      notice.classList.remove('hidden')
-      notice.textContent = 'Your post is live'
-      setTimeout(() => {
-        notice.classList.add('hidden');
-      }, 2500);
+  //   if(textArea.value.trim().length == 0){
+  //     alert.classList.remove('hidden')
+  //     alert.textContent = 'Content can not be empty'
+  //     setTimeout(() => {
+  //       alert.classList.add('hidden');
+  //     }, 2500);
+  //   } else if(textArea.value.length > 250){
+  //     alert.classList.remove('hidden')
+  //     alert.textContent = 'Exceeds 250 characters'
+  //     setTimeout(() => {
+  //       alert.classList.add('hidden');
+  //     }, 2500);
+  //   } else {
+  //     if(replyForm.classList.contains('reply-form')){
+  //       replyForm.classList.add('hidden')
+  //       reply_btn.forEach((btn) => {
+  //         btn.name = 'arrow-undo'
+  //       })
+  //     }
+  //     notice.classList.remove('hidden')
+  //     notice.textContent = 'Your post is live'
+  //     setTimeout(() => {
+  //       notice.classList.add('hidden');
+  //     }, 2500);
 
-    }
-  }
+  //   }
+  // }
 }
