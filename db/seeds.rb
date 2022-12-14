@@ -5,10 +5,19 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-if User.all.count >= 75
+if User.all.count >= 20
   return
 else
-  75.times do |n|
+
+  User.all.each do |u|
+    if u.profile.nil?
+      create_profile!
+    elsif u.profile.color.nil?
+      u.profile.set_color
+    end
+  end
+
+  20.times do |n|
     name = Faker::FunnyName.two_word_name
 
     user = User.create!(username: username = "#{name.parameterize(separator: '_')}#{n}",
@@ -16,15 +25,15 @@ else
                         password: 'foobar')
 
     user.create_profile!(full_name: name,
-                         location: Faker::Nation.capital_city,
+                         location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}",
                          bio: Faker::Quote.famous_last_words,
-                         link: nil)
+                         link: 'gemz.onrender.com')
   end
 
   3.times do
-    users = User.all.sample(50)
+    users = User.all
     users.each do |u|
-      post = Faker::TvShows::Simpsons.quote
+      post = Faker::Quote.matz
       next if post.length >= 250
 
       Post.create!(user: u, content: post)
@@ -34,7 +43,7 @@ else
   3.times do
     posts = Post.all.sample(50)
     posts.each do |p|
-      comment = Faker::TvShows::Friends.quote
+      comment = Faker::Quotes::Chiquito.joke
       next if comment.length >= 250
 
       Comment.create!(user: User.all.sample,
@@ -46,7 +55,10 @@ else
   3.times do
     posts = Post.all.sample(50)
     posts.each do |p|
-      Reaction.create!(user: User.all.sample,
+      u = User.all.sample
+      next if u.reactions.map(&:reactable).include?(p)
+
+      Reaction.create!(user: u,
                        reactable: p)
     end
   end
