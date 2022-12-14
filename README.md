@@ -1,5 +1,7 @@
 # gemz
 
+![gemz-home](app/assets/images/gemz-home.png)
+
 A social media experience built with Ruby on Rails. [Live Preview](https://gemz.onrender.com)
 
 ## About
