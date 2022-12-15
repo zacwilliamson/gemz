@@ -3,7 +3,7 @@
   <div>
     <h3 class="text-3xl font-bold mb-2">New members</h3>
 
-    <div class="flex flex-col gap-y-5 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4">
+    <div class="flex flex-col gap-y-5 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4 duration-500">
       <% @new_members.each do |m| %>
         <div class="flex items-center">
             <img src=<%= profile_img(m) %> class="rounded-full w-14 h-14 mr-3">
@@ -16,7 +16,7 @@
   <div class="mt-7">
     <h3 class="text-3xl font-bold mb-2">Latest posts</h3>
 
-    <div class="flex flex-col gap-y-4 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4">
+    <div class="flex flex-col gap-y-4 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4 duration-500">
       <% @latest_posts.each do |p| %>
         <div class="flex items-center">
           <img src=<%= profile_img(p.user) %> class="rounded-full w-10 h-10 mr-3">
