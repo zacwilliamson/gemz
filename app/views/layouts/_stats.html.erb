@@ -1,4 +1,4 @@
-<div class="hidden lg:block flex flex-col mt-10 ml-7">
+<div class="hidden lg:block flex flex-col mt-10 ml-7 mr-2">
 
   <div>
     <h3 class="text-3xl font-bold mb-2">New members</h3>
@@ -20,7 +20,7 @@
       <% @latest_posts.each do |p| %>
         <div class="flex items-center">
           <img src=<%= profile_img(p.user) %> class="rounded-full w-10 h-10 mr-3">
-          <p class="underline"><%= link_to p.user.username, p.user %></p>
+          <p><%= link_to p.user.username, p.user %></p>
         </div>
 
         <div>

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def main_layout
-    return 'pt-[85px] md:pt-[0px] md:pl-[240px]' if user_signed_in?
+    return 'pt-[60px] md:pt-[0px] md:pl-[240px]' if user_signed_in?
   end
 
   def right_content
@@ -15,7 +15,6 @@ module ApplicationHelper
     pages = ['posts#index', 'users#notifications', 'users#index']
     user_signed_in? && pages.include?(page)
   end
-
 
   def bg_colors
     { red: 'bg-[#ff5769]',
