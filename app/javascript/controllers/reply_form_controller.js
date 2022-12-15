@@ -18,8 +18,8 @@ export default class extends Controller {
     }
   }
 
+  // attempted to create alert/notices on submission, needs to be cleaned up
   close(){
-    let commentForms = document.querySelectorAll('.comment-form')
     let replyForm = this.element.parentElement.parentElement.parentElement.parentElement
     let textArea = this.element.parentElement.previousElementSibling
     let reply_btn = document.querySelectorAll('.reply-btn');
@@ -52,9 +52,5 @@ export default class extends Controller {
         notice.classList.add('hidden');
       }, 2500);
     }
-  }
-
-  clear(){
-    this.element.reset()
   }
 }

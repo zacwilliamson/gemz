@@ -1,5 +1,5 @@
 <div class="bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] duration-500 mb-4 py-3 px-4 border border-gray-100 dark:border-gray-700">
-   <%= form_with model: [ @post, @post.comments.build ], data: { controller: 'reply-form', action: "turbo:submit-end->reply-form#clear" } do |f| %>
+   <%= form_with model: [ @post, @post.comments.build ], data: { controller: 'forms', action: "turbo:submit-end->forms#clear" } do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :parent_id, :value => parent.id unless parent.nil? %>
       <%= f.text_area :content, placeholder: "Write a comment here:", :class => 'input-primary dark:input-dark resize-none my-3 h-14 shadow-none outline-none p-0 my-0' %>
