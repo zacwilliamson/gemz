@@ -7,9 +7,11 @@
       <%= render @new %>
     </ul>
   <% end %>
-
-  <h3 class="text-xl duration-500">Old</h3>
-  <ul>
-    <%= render @old %>
-  </ul>
+  
+  <% unless @old.empty? %>
+    <h3 class="text-xl duration-500">Old</h3>
+    <ul>
+      <%= render @old %>
+    </ul>
+  <% end %>
 </div>
