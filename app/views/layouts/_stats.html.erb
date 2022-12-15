@@ -1,0 +1,35 @@
+<div class="hidden lg:block flex flex-col mt-10 ml-7">
+
+  <div>
+    <h3 class="text-3xl font-bold mb-2">New members</h3>
+
+    <div class="flex flex-col gap-y-5 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4">
+      <% @new_members.each do |m| %>
+        <div class="flex items-center">
+            <img src=<%= profile_img(m) %> class="rounded-full w-14 h-14 mr-3">
+            <p class="underline"><%= link_to m.username, m %></p>
+        </div>
+      <% end %> 
+    </div>
+  </div>
+
+  <div class="mt-7">
+    <h3 class="text-3xl font-bold mb-2">Latest posts</h3>
+
+    <div class="flex flex-col gap-y-4 bg-white shadow-md dark:bg-dm-2 dark:shadow-none rounded-[6px] border border-gray-100 dark:border-gray-700 py-3 px-4">
+      <% @latest_posts.each do |p| %>
+        <div class="flex items-center">
+          <img src=<%= profile_img(p.user) %> class="rounded-full w-10 h-10 mr-3">
+          <p class="underline"><%= link_to p.user.username, p.user %></p>
+        </div>
+
+        <div>
+          <%= link_to p do %>
+            <p class='text-gray-600 dark:text-gray-400 break-words'><%= p.content.truncate(95) %></p>
+            <hr class="h-[1px] border-none bg-gray-200 dark:bg-gray-800 my-[5px]">
+        <% end %>
+      </div>
+      <% end %> 
+    </div>
+  </div>
+</div>

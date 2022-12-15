@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_stats
 
   protect_from_forgery except: :create
 
@@ -11,6 +12,11 @@ class ApplicationController < ActionController::Base
     return if user_signed_in?
 
     redirect_to new_user_session_path, status: :see_other
+  end
+
+  def set_stats
+    @new_members = User.order('created_at DESC').limit(3)
+    @latest_posts = Post.order('created_at DESC').limit(3)
   end
 
   protected

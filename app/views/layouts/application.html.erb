@@ -19,7 +19,10 @@
     <div class="w-full <%= main_layout %>">
       <div class="w-full <%= right_content %>">
         <%= render 'layouts/flash' %>
-        <%= yield %>
+        <div class='<%= grid_layout("#{controller_name}##{action_name}") %>'>
+          <%= yield %>
+          <%= render 'layouts/stats' if include_stats?("#{controller_name}##{action_name}") %>
+        </div>
       </div>
     </div>
   </body>
