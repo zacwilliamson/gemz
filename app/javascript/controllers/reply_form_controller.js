@@ -19,6 +19,7 @@ export default class extends Controller {
   }
 
   close(){
+    let commentForms = document.querySelectorAll('.comment-form')
     let replyForm = this.element.parentElement.parentElement.parentElement.parentElement
     let textArea = this.element.parentElement.previousElementSibling
     let reply_btn = document.querySelectorAll('.reply-btn');
@@ -44,12 +45,16 @@ export default class extends Controller {
           btn.name = 'arrow-undo'
         })
       }
+
       notice.classList.remove('hidden')
       notice.textContent = 'Your post is live'
       setTimeout(() => {
         notice.classList.add('hidden');
       }, 2500);
-
     }
+  }
+
+  clear(){
+    this.element.reset()
   }
 }
