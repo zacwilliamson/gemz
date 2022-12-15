@@ -33,6 +33,10 @@ module.exports = {
       'lm-2': '#ffffff',
       'lm-text-2': 'c8d1d8',
       },
+
+      screens: {
+        'lg': '1135px',
+      },
     }
   }
 }
