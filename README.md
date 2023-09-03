@@ -62,3 +62,28 @@ Areas I get to improve would be organizing my code, testing, and styling the app
   - different layout renders if user is logged in or not
   - profile color is displayed based on users profile settings
   - notification icons vary based on notifiable type.
+
+## Known bugs
+
+- On mobile view, when a page is loading, the menu bar is displayed open
+- The server can be slow to load some pages/data based on location.
+
+## Photos
+
+![gemz1](app/assets/images/gemz1.png)
+
+![gemz2](app/assets/images/gemz2.png)
+
+![gemz3](app/assets/images/gemz3.png)
+
+![gemz4](app/assets/images/gemz4.png)
+
+![gemz5](app/assets/images/gemz5.png)
+
+![gemz6](app/assets/images/gemz6.png)
+
+![gemz7](app/assets/images/gemz7.png)
+
+![gemz8](app/assets/images/gemz8.png)
+
+![gemz9](app/assets/images/gemz9.png)
